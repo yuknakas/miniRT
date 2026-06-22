@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 09:55:24 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/21 21:26:11 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/06/22 11:36:39 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ bool	is_perpendicular(float v1[3], float v2[3]);
 bool	normalize(float v[3], float target[3]);
 
 float	v_len(float v[3]);
+void	v_add(float v1[3], float v2[3], float v_target[3]);
 void	v_subtract(float v1[3], float v2[3], float v_target[3]);
 
 #endif

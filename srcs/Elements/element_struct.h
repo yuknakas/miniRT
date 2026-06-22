@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 20:40:36 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/21 23:53:34 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/06/22 16:09:42 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,12 @@ typedef struct s_plane
 // ==================== Struct Cylinder =======================================
 typedef struct s_cylinder
 {
-	float			coords[3];
-	float			normal[3];
-	float			diameter;
-	float			height;
-	unsigned char	rgb[3];
+	float			coords[3]; //> coordinates of the center of cylinder
+	float			normal[3]; //> 3d normalized vector of axis of cylinder
+	float			diameter; //> diameter of cylinder
+	float			height; //> height of cylinder
+	unsigned char	rgb[3]; //> rgb value of cylinder
+	float			center[3]; // center of a base circle
 }	t_cylinder;
 
 #endif
