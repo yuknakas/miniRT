@@ -6,7 +6,7 @@
 /*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:37:34 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/23 15:06:04 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/23 15:24:04 by nakashibay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ bool	_set_acl(t_minirt *minirt, char **info)
 			perror(ERR_MALLOC);
 			return (false);
 		}
+		
 	}
 }
 
