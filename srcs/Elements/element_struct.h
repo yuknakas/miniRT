@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   element_struct.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 20:40:36 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/22 16:09:42 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/06/23 14:02:00 by nakashibay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 # include <stdbool.h>
 
 // ==================== Struct Ambient Lighting ===============================
-typedef struct s_ambient_lighting
+typedef struct s_amb_light
 {
 	float			ratio;
 	unsigned char	rgb[3];
-}	t_ambient_lighting;
+}	t_amb_light;
 
 // ==================== Struct Camera =========================================
 /**
@@ -39,6 +39,14 @@ typedef struct s_camera
 	float			v_vert[3]; // vertical (down) component of the screen
 }	t_camera;
 /* standard distance is set to 16 */
+
+// ==================== Light =================================================
+typedef struct s_light
+{
+	float			coords[3];
+	float			brightness;
+	unsigned char	rgb[3]; //> rgb value of light
+}	t_light;
 
 // ==================== Struct Sphere =========================================
 /**

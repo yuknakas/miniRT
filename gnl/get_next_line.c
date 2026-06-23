@@ -3,14 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 09:34:51 by yuknakas          #+#    #+#             */
-/*   Updated: 2024/12/02 15:43:05 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:40:22 by nakashibay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*get_next_line(int fd);
+char	*_next_line(char *line_buffer);
+char	*_makeline(const char *line_buffer);
+char	*_copybuffer(char *line_buffer, char *read_buffer);
+char	*_readfile(int fd, char *line_buffer);
+
+/**
+ * Reads the next line from file descriptor fd. Returns NULL at EOF
+ * @param fd File Despriptor of the file to read
+ * @return Pointer to line read stored in a malloc'ed array. Requires free
+ */
+char	*get_next_line(int fd)
+{
+	static char	*line_buffer;
+	char		*current_line;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	line_buffer = _readfile(fd, line_buffer);
+	if (line_buffer == NULL)
+		return (NULL);
+	if (line_buffer[0] == '\0')
+	{
+		free (line_buffer);
+		line_buffer = NULL;
+		return (NULL);
+	}
+	current_line = _makeline(line_buffer);
+	line_buffer = _next_line(line_buffer);
+	return (current_line);
+}
 
 char	*_next_line(char *line_buffer)
 {
@@ -91,25 +123,4 @@ char	*_readfile(int fd, char *line_buffer)
 	}
 	free(read_buffer);
 	return (line_buffer);
-}
-
-char	*get_next_line(int fd)
-{
-	static char	*line_buffer;
-	char		*current_line;
-
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	line_buffer = _readfile(fd, line_buffer);
-	if (line_buffer == NULL)
-		return (NULL);
-	if (line_buffer[0] == '\0')
-	{
-		free (line_buffer);
-		line_buffer = NULL;
-		return (NULL);
-	}
-	current_line = _makeline(line_buffer);
-	line_buffer = _next_line(line_buffer);
-	return (current_line);
 }
