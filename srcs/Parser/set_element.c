@@ -6,14 +6,13 @@
 /*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:37:34 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/23 15:24:04 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/23 16:57:39 by nakashibay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
 bool	set_element(t_minirt *minirt, char *line);
-void    _free_char_dp(char **cdp);
 
 /**
  * Sets the element struct
@@ -48,21 +47,4 @@ bool	_set_acl(t_minirt *minirt, char **info)
 		}
 		
 	}
-}
-
-/**
- * Frees a char double pointer
- * @param cdp char double pointer to free
- */
-void	_free_char_dp(char **cdp)
-{
-	int	i;
-
-	i = 0;
-	while (cpd[i])
-	{
-		free(cdp[i]);
-		i++;
-	}
-	free(cdp);
 }

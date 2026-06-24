@@ -6,7 +6,7 @@
 /*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 13:41:50 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/23 15:04:19 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/23 16:57:02 by nakashibay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,18 @@ typedef struct s_minirt
 }	t_minirt;
 
 // ==================== ENUM ELEMENT_TYPE ====================================
-typedef enum
+typedef enum s_elem_type
 {
 	SPHERE,
 	PLANE,
 	CYL
-}   elem_type;
+}   t_elem_type;
 
 // ==================== ELEMENT STRUCT =======================================
 typedef struct s_element
 {
 	void		*element;
-	elem_type	type;
+	t_elem_type	type;
 	t_element	*next;
 }	t_element;
 

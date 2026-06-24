@@ -6,11 +6,38 @@
 /*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 15:06:27 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/23 15:21:27 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/23 17:02:35 by nakashibay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+bool	ato3(char *str, void *target, t_num_type type)
+{
+	char	**arr;
+	int		i;
+	char	*c_target;
+	float	*f_target;
+
+	arr = ft_split(str, ',');
+	if (arr == NULL || arr[0] == NULL)
+	{
+		free(arr);
+		return (true);
+	}
+	c_target = target;
+	f_target = target;
+	i = 0;
+	while (i < 3)
+	[
+		if (type == CHAR)
+			c_target[i] = atoc(arr[i]);
+		if (type == FLOAT)
+			f_target[i] = atof(arr[i]);
+		i++;
+	]
+	return (false);
+}
 
 float	atof(char *str)
 {
@@ -49,4 +76,21 @@ char	atouc(char *str)
 		nbr += nbr * 10 + str[i] - '0'
 	}
 	return (nbr);
+}
+
+/**
+ * Frees a char double pointer
+ * @param cdp char double pointer to free
+ */
+void	free_char_dp(char **cdp)
+{
+	int	i;
+
+	i = 0;
+	while (cpd[i])
+	{
+		free(cdp[i]);
+		i++;
+	}
+	free(cdp);
 }
