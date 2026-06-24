@@ -6,14 +6,14 @@
 /*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:26:08 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/24 14:34:12 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/24 15:15:33 by nakashibay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PAESER_H
 # define PARSER_H
 
-# include "../minirt.h"
+# include "../minirt_struct.h"
 # include "../../libft/libft.h"
 # include "../../gnl/get_next_line.h"
 # include <sys/types.h>
@@ -39,6 +39,8 @@ void			free_char_dp(char **cdp);
 t_element		*elem_new(void *in_element, t_elem_type type);
 bool			elem_append(t_element *elem_list, t_element *new_element);
 t_element		*elem_last_id(t_element *elem_list, int *id);
+
+void			clean_minirt(t_minirt *minirt);
 
 # define ERR_NULL_IN "Error: Infile cannot be NULL"
 # define ERR_FILETYPE "Error: Wrong infile type. Must be .rt"
