@@ -6,7 +6,7 @@
 /*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:26:08 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/24 14:25:35 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/24 14:34:12 by nakashibay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../minirt.h"
 # include "../../libft/libft.h"
+# include "../../gnl/get_next_line.h"
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
