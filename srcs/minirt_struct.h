@@ -6,7 +6,7 @@
 /*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 13:41:50 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/23 16:57:02 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/24 11:41:58 by nakashibay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_element
 {
 	void		*element;
 	t_elem_type	type;
+	int			id; // id of element starting at 1
 	t_element	*next;
 }	t_element;
 

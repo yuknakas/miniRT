@@ -16,3 +16,11 @@ Lin-cylinder intersection
 [wiki](https://en.wikipedia.org/wiki/Line-cylinder_intersection)  
 
 all points of intersetion should be noted down for transparent objects
+
+
+parser
+1. check filetype
+1.1 Initialize
+2. read line
+3. make object from line
+4. if invalid free

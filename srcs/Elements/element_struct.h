@@ -6,7 +6,7 @@
 /*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 20:40:36 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/23 14:02:00 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/24 11:11:20 by nakashibay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ typedef struct s_camera
 // ==================== Light =================================================
 typedef struct s_light
 {
-	float			coords[3];
-	float			brightness;
-	unsigned char	rgb[3]; //> rgb value of light
+	float			coords[3]; //> coordinates of light
+	float			brightness; //> brightness of light
+	unsigned char	rgb[3]; //> rgb value of light (only for bonus)
 }	t_light;
 
 // ==================== Struct Sphere =========================================

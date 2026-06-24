@@ -6,14 +6,14 @@
 /*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:20:22 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/23 14:37:25 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/24 14:28:30 by nakashibay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-bool	parse_input(t_minirt *minirt, char *infile);
-bool	_isfiletype(char *infile);
+bool		parse_input(t_minirt *minirt, char *infile);
+static bool	_isfiletype(char *infile);
 
 /**
  * Parses the input file and prepares the t_minirt struct for raytracing
@@ -32,7 +32,7 @@ bool	parse_input(t_minirt *minirt, char *infile)
  * @param infile pointer to string that is the name of infile
  * @return boolean-true if infile is an .rt file, false if not
  */
-bool	_isfiletype(char *infile)
+static bool	_isfiletype(char *infile)
 {
 	int	len;
 
