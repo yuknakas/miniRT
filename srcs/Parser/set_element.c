@@ -6,7 +6,7 @@
 /*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:37:34 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/24 14:26:40 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/26 09:21:04 by nakashibay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ static bool	_set_camera(t_minirt *minirt, char **info)
 		return (1);
 	}
 	minirt->camera->fov_d = ft_atouc(info[3]);
+	setup_screen(minirt->camera);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 15:06:27 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/24 14:27:22 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/26 09:22:34 by nakashibay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool			ato3(char *str, void *target, t_num_type type);
 static bool		_is_valid_3p(char **arr);
 float			ft_atof(char *str);
 unsigned char	ft_atouc(char *str);
-void			free_char_dp(char **cdp)
+void			free_char_dp(char **cdp);
 
 /**
  * Converts a string with three numerical values separated by commas to numbers
@@ -41,13 +41,13 @@ bool	ato3(char *str, void *target, t_num_type type)
 	f_target = target;
 	i = 0;
 	while (i < 3)
-	[
+	{
 		if (type == UCHAR)
 			c_target[i] = atoc(arr[i]);
 		if (type == FLOAT)
 			f_target[i] = ft_atof(arr[i]);
 		i++;
-	]
+	}
 	free_char_dp(arr);
 	return (false);
 }
@@ -130,7 +130,7 @@ unsigned char	ft_atouc(char *str)
 	{
 		if ((UCHAR_MAX - (str[i] - '0')) / 10 < nbr)
 			return (UCHAR_MAX);
-		nbr += nbr * 10 + (str[i] - '0')
+		nbr += nbr * 10 + (str[i] - '0');
 	}
 	return (nbr);
 }
@@ -144,7 +144,7 @@ void	free_char_dp(char **cdp)
 	int	i;
 
 	i = 0;
-	while (cpd[i])
+	while (cdp[i])
 	{
 		free(cdp[i]);
 		i++;

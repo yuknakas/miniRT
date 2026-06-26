@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   setup_screen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 10:55:46 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/21 21:08:25 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/06/26 09:20:04 by nakashibay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "elements.h"
 
-bool	setup_screen(t_camera *camera);
-void	_find_vectors(t_camera *camera);
-void	_set_hori(t_camera *camera);
-void	_set_vert(t_camera *camera);
-void	_edge_vert_orientation(t_camera *camera);
+void		setup_screen(t_camera *camera);
+static void	_find_vectors(t_camera *camera);
+static void	_set_hori(t_camera *camera);
+static void	_set_vert(t_camera *camera);
+static void	_edge_vert_orientation(t_camera *camera);
 
 /**
  * Sets up the screen (what will be shown in the window), stored within t_camera
  * @param camera pointer to t_camera struct, which holds all information relavant
  */
-bool	setup_screen(t_camera *camera)
+void	setup_screen(t_camera *camera)
 {
 	camera->center[0] = camera->coords[0] + FOCAL_DIST * camera->orientation[0];
 	camera->center[1] = camera->coords[1] + FOCAL_DIST * camera->orientation[1];
@@ -41,7 +41,7 @@ bool	setup_screen(t_camera *camera)
  * Otherwise the cross product of orientation and [0, 1, 0] will give
  * the horizontal component of the screen, to the right (positive)
  */
-void	_find_vectors(t_camera *camera)
+static void	_find_vectors(t_camera *camera)
 {
 	if (1.0F - fabsf(camera->orientation[1]) < EPSILON)
 		return (_edge_vert_orientation(camera));
@@ -57,7 +57,7 @@ void	_find_vectors(t_camera *camera)
  * and [0,1,0], the vertical vector.
  * Then, the vector is normalized for utility.
  */
-void	_set_hori(t_camera *camera)
+static void	_set_hori(t_camera *camera)
 {
 	float	v2[3]; // temporal vertical unit vector [0,1,0]
 
@@ -77,7 +77,7 @@ void	_set_hori(t_camera *camera)
  * Finally, the vector is corrected to point to the downward direction to maintain
  * the screen upright.
  */
-void	_set_vert(t_camera *camera)
+static void	_set_vert(t_camera *camera)
 {
 	cross(camera->orientation, camera->v_hori, camera->v_vert);
 	normalize(camera->v_vert, camera->v_vert);
@@ -99,7 +99,7 @@ void	_set_vert(t_camera *camera)
  * If screen is facing up, x+ will be v_hori and z- will be v_vert.
  * If screen is facing down, x- will be v_hori and z+ will be v_vert.
  */
-void	_edge_vert_orientation(t_camera *camera)
+static void	_edge_vert_orientation(t_camera *camera)
 {
 	camera->v_hori[1] = 0.0F;
 	camera->v_hori[2] = 0.0F;

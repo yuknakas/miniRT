@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   elements.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 13:44:19 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/22 14:10:42 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/06/26 09:20:25 by nakashibay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "../Vectors/vectors.h"
 # include "element_struct.h"
 
-bool	setup_screen(t_camera *camera);
+void	setup_screen(t_camera *camera);
 float	ray_to_pixel(t_camera *camera, int x, int y, float v_target[3]);
 
 float	ray_sphere(float origin[3], float ray[3], t_sphere *sphere, float min);

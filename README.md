@@ -24,3 +24,15 @@ parser
 2. read line
 3. make object from line
 4. if invalid free
+
+
+Flow  
+input  
+->Parse  
+->Setup Display  
+
+for every pixel  
+-> make ray  
+-> find obj  
+-> return color  
+*add light/reflection to this

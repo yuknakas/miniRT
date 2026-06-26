@@ -6,7 +6,7 @@
 /*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 13:41:07 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/24 14:27:04 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/26 09:17:52 by nakashibay       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ static bool	_set_cylinder(t_minirt *minirt, char **info)
 		perror("Error: Insufficient arguments for Cylinder");
 		return (1);
 	}
-	cyl = malloc(sizeof(t_cyl));
+	cyl = malloc(sizeof(t_cylinder));
 	if (!cyl)
 	{
 		perror(ERR_MALLOC);
