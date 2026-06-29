@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   element_struct.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
+/*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 20:40:36 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/24 11:11:20 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/29 15:38:59 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 // ==================== Struct Ambient Lighting ===============================
 typedef struct s_amb_light
 {
-	float			ratio;
-	unsigned char	rgb[3];
+	float		ratio;
+	float		rgb[3];
 }	t_amb_light;
 
 // ==================== Struct Camera =========================================
@@ -43,9 +43,9 @@ typedef struct s_camera
 // ==================== Light =================================================
 typedef struct s_light
 {
-	float			coords[3]; //> coordinates of light
-	float			brightness; //> brightness of light
-	unsigned char	rgb[3]; //> rgb value of light (only for bonus)
+	float		coords[3]; //> coordinates of light
+	float		brightness; //> brightness of light
+	float		rgb[3]; //> rgb value of light (only for bonus)
 }	t_light;
 
 // ==================== Struct Sphere =========================================
@@ -54,28 +54,54 @@ typedef struct s_light
  */
 typedef struct s_sphere
 {
-	float			coords[3]; //> coordinate of the center of sphere
-	float			diameter; //> diameter of sphere
-	unsigned char	rgb[3]; //> rgb value of sphere
+	float		coords[3]; //> coordinate of the center of sphere
+	float		diameter; //> diameter of sphere
+	float		rgb[3]; //> rgb value of sphere
 }	t_sphere;
 
 // ==================== Struct Plane ==========================================
 typedef struct s_plane
 {
-	float			coords[3]; //> coordinates of a point on plane
-	float			normal[3]; //> normal vector of the plane
-	unsigned char	rgb[3]; //> rgb value of plane
+	float		coords[3]; //> coordinates of a point on plane
+	float		normal[3]; //> normal vector of the plane
+	float		rgb[3]; //> rgb value of plane
 }	t_plane;
+
+// ==================== ENUM INTERSECT_TYPE ===================================
+typedef enum s_hit_type
+{
+	END,
+	SIDE,
+	NONE
+}	t_hit_type;
 
 // ==================== Struct Cylinder =======================================
 typedef struct s_cylinder
 {
-	float			coords[3]; //> coordinates of the center of cylinder
-	float			normal[3]; //> 3d normalized vector of axis of cylinder
-	float			diameter; //> diameter of cylinder
-	float			height; //> height of cylinder
-	unsigned char	rgb[3]; //> rgb value of cylinder
-	float			center[3]; // center of a base circle
+	float		coords[3]; //> coordinates of the center of cylinder
+	float		normal[3]; //> 3d normalized vector of axis of cylinder
+	float		diameter; //> diameter of cylinder
+	float		height; //> height of cylinder
+	float		rgb[3]; //> rgb value of cylinder
+	float		center[3]; // center of a base circle
+	t_hit_type	hit_type;
 }	t_cylinder;
+
+// ==================== ENUM ELEMENT_TYPE ====================================
+typedef enum s_elem_type
+{
+	SPHERE,
+	PLANE,
+	CYL
+}   t_elem_type;
+
+// ==================== ELEMENT STRUCT =======================================
+typedef struct s_element
+{
+	void		*element;
+	t_elem_type	type;
+	int			id; // id of element starting at 1
+	t_element	*next;
+}	t_element;
 
 #endif

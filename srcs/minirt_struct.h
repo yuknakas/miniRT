@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_struct.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
+/*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 13:41:50 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/24 11:41:58 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/29 16:05:59 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,28 @@
 # include "Elements/elements.h"
 # include "Display/display.h"
 
-typedef struct s_element t_element;
+typedef struct s_pixel t_pixel;
 
 // ==================== MINIRT STRUCT ========================================
 typedef struct s_minirt
 {
 	t_display	display;
+	t_pixel		pixel;
 	t_amb_light	*amb_light;
 	t_camera	*camera;
 	t_light		*light;
 	t_element	*elements;
 }	t_minirt;
 
-// ==================== ENUM ELEMENT_TYPE ====================================
-typedef enum s_elem_type
+typedef struct s_pixel
 {
-	SPHERE,
-	PLANE,
-	CYL
-}   t_elem_type;
-
-// ==================== ELEMENT STRUCT =======================================
-typedef struct s_element
-{
-	void		*element;
-	t_elem_type	type;
-	int			id; // id of element starting at 1
-	t_element	*next;
-}	t_element;
-
+	int			x;
+	int			y;
+	float		ray[3];
+	float		min;
+	float		poi[3];
+	int			elem_id;
+	float		normal[3];
+}	t_pixel;
 
 #endif

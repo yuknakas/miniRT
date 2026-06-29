@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 09:41:00 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/22 16:25:35 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/06/29 07:57:06 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,16 @@ float	ray_cylinder(float origin[3], float ray[3], t_cylinder *cyl, float min)
 	dist[0] = _cyl_surface(origin, ray, cyl, min);
 	dist[1] = cylinder_end(origin, ray, cyl, min);
 	if (dist[0] < dist[1] && dist[0] >= min)
+	{
+		cyl->hit_type = SIDE;
 		return (dist[0]);
+	}
 	if (dist[1] >= min)
+	{
+		cyl->hit_type = END;
 		return (dist[1]);
+	}
+	cyl->hit_type = NONE;
 	return (-1.0F);
 }
 
@@ -70,9 +77,9 @@ float	_cyl_surface(float origin[3], float ray[3], t_cylinder *cyl, float min)
 	cross(ray, cyl->normal, n_cross_a);
 	cross(cyl->center, cyl->normal, b_cross_a);
 	_set_dist(dist, det, n_cross_a, b_cross_a);
-	if (dist[0] >= min && _t_cyl(cyl->normal, ray, cyl, dist[0]) < cyl->height)
+	if (dist[0] >= min && _t_cyl(cyl->normal, ray, cyl, dist[0]))
 		return (dist[0]);
-	if (dist[1] >= min && _t_cyl(cyl->normal, ray, cyl, dist[1]) < cyl->height)
+	if (dist[1] >= min && _t_cyl(cyl->normal, ray, cyl, dist[1]))
 		return (dist[1]);
 	return (-1.0F);
 }
@@ -125,9 +132,9 @@ bool	_t_cyl(float origin[3], float ray[3], t_cylinder *cyl, float dist)
 	float	t;
 
 	v_subtract(origin, cyl->center, o_min_b);
-	x_min_b[0] = o_min_b[0] + cyl->normal[0] * dist;
-	x_min_b[1] = o_min_b[1] + cyl->normal[1] * dist;
-	x_min_b[2] = o_min_b[2] + cyl->normal[2] * dist;
-	t = dot(cyl->normal, x_min_b);
+	x_min_b[0] = o_min_b[0] + ray[0] * dist;
+	x_min_b[1] = o_min_b[1] + ray[1] * dist;
+	x_min_b[2] = o_min_b[2] + ray[2] * dist;
+	t = dot(x_min_b, cyl->normal);
 	return (0.0F <= t && t <= cyl->height);
 }

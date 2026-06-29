@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 11:51:58 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/22 15:33:04 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/06/29 07:49:48 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ float	_ray_incircle(float origin[3], float ray[3], t_cylinder *cyl, float min)
         return dist[0];
     if (dist[1] >= min)
         return dist[1];
-    return -1.0f;
+    return (-1.0f);
 }
 
 /**

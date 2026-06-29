@@ -3,76 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
+/*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 15:06:27 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/26 09:22:34 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/29 10:49:47 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-bool			ato3(char *str, void *target, t_num_type type);
-static bool		_is_valid_3p(char **arr);
 float			ft_atof(char *str);
 unsigned char	ft_atouc(char *str);
 void			free_char_dp(char **cdp);
-
-/**
- * Converts a string with three numerical values separated by commas to numbers
- *  and stores them in a pointer to 3 values
- * @param str pointer to string in form num1,num2,num3
- * @param target pointer to hold three numerical values
- * @param type type of number to extract: UCHAR or FLOAT
- * @return boolean-true (1) if error happens with memory allocation,
- *  false if good
- */
-bool	ato3(char *str, void *target, t_num_type type)
-{
-	char	**arr;
-	int		i;
-	char	*c_target;
-	float	*f_target;
-
-	arr = ft_split(str, ',');
-	if (!_is_valid_3p(arr))
-		return (true);
-	c_target = target;
-	f_target = target;
-	i = 0;
-	while (i < 3)
-	{
-		if (type == UCHAR)
-			c_target[i] = atoc(arr[i]);
-		if (type == FLOAT)
-			f_target[i] = ft_atof(arr[i]);
-		i++;
-	}
-	free_char_dp(arr);
-	return (false);
-}
-
-/**
- * Checks if an char double pointer array is valid for ectracting 3 nbr
- * @param arr array to char double pointer
- * @return boolean-true if valid, false if not
- * 
- * This also handles frees
- */
-static bool	_is_valid_3p(char **arr)
-{
-	if (arr == NULL)
-	{
-		free(arr);
-		return (false);
-	}
-	if (sizeof(arr) / sizeof(char *) <= 3)
-	{
-		free_char_dp(arr);
-		return (false);
-	}
-	return (true);
-}
 
 /**
  * Converts char string to float

@@ -36,3 +36,19 @@ for every pixel
 -> find obj  
 -> return color  
 *add light/reflection to this
+
+[Valuable Source](https://www.gabrielgambetta.com/computer-graphics-from-scratch/02-basic-raytracing.html)  
+
+Returning Color  
+Info needed  
+- Point of intersection
+- Light types
+-> Amb light simply add  
+-> Point light needs normal to suface
+
+
+Data types
+1. x, y of pixel and all relavant display info
+2. vector to pixel, min distance
+3. closest object id, distance
+4. point of intersection, normal

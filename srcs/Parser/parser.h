@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
+/*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:26:08 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/24 15:15:33 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/29 15:42:10 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,20 @@
 # include <fcntl.h>
 # include <limits.h>
 
-// =================== ENUM NUM_TYPE ========================================
-typedef enum s_num_type
-{
-    UCHAR,
-    FLOAT
-} t_num_type;
+// // =================== ENUM NUM_TYPE ========================================
+// typedef enum s_num_type
+// {
+//     UCHAR,
+//     FLOAT
+// } t_num_type;
 
 bool			set_element(t_minirt *minirt, char *line);
 bool			set_spc(t_minirt *minirt, char **info);
 
 float			ft_atof(char *str);
 unsigned char	ft_atouc(char *str);
-bool			ato3(char *str, void *target, t_num_type type);
+bool	        ato3f(char *str, float target[3]);
+bool			parse_colors(char *str, float rgb[3]);
 void			free_char_dp(char **cdp);
 
 t_element		*elem_new(void *in_element, t_elem_type type);

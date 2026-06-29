@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_element2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
+/*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 13:41:07 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/26 09:17:52 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/29 15:48:54 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ static bool	_set_sphere(t_minirt *minirt, char **info)
 		perror(ERR_MALLOC);
 		return (1);
 	}
-	if (ato3(info[1], sphere->coords, FLOAT)
-			|| ato3(info[3], sphere->rgb, UCHAR))
+	if (ato3(info[1], sphere->coords)
+			|| parse_colors(info[3], sphere->rgb))
 	{
 		free(sphere);
 		return (1);
@@ -96,9 +96,9 @@ static bool	_set_plane(t_minirt *minirt, char **info)
 		perror(ERR_MALLOC);
 		return (1);
 	}
-	if (ato3(info[1], plane->coords, FLOAT)
-			|| ato3(info[2], plane->normal, FLOAT)
-			|| ato3(info[3], plane->rgb, UCHAR)
+	if (ato3(info[1], plane->coords)
+			|| ato3(info[2], plane->normal)
+			|| parse_colors(info[3], plane->rgb)
 			|| normalize(plane->normal, plane->normal))
 	{
 		free(plane);
@@ -131,9 +131,8 @@ static bool	_set_cylinder(t_minirt *minirt, char **info)
 		perror(ERR_MALLOC);
 		return (1);
 	}
-	if (ato3(info[1], cyl->coords, FLOAT)
-			|| ato3(info[2], cyl->normal, FLOAT)
-			|| ato3(info[5], cyl->rgb, UCHAR)
+	if (ato3(info[1], cyl->coords) || ato3(info[2], cyl->normal)
+			|| parse_colors(info[5], cyl->rgb)
 			|| normalize(cyl->normal, cyl->normal))
 	{
 		free(cyl);

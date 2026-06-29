@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_element.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
+/*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:37:34 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/26 09:21:04 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/29 15:47:07 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ static bool	_set_amb_light(t_minirt *minirt, char **info)
 		return (1);
 	}
 	minirt->amb_light->ratio = ft_atof(info[1]);
-	if (ato3(info[2], minirt->amb_light->rgb, UCHAR))
+	if (parse_colors(info[2], minirt->amb_light->rgb))
 	{
 		free(minirt->amb_light);
 		minirt->amb_light = NULL;
@@ -132,8 +132,8 @@ static bool	_set_camera(t_minirt *minirt, char **info)
 		perror(ERR_MALLOC);
 		return (1);
 	}
-	if (ato3(info[1], minirt->camera->coords, FLOAT)
-			|| ato3(info[2], minirt->camera->orientation, FLOAT)
+	if (ato3(info[1], minirt->camera->coords)
+			|| ato3(info[2], minirt->camera->orientation)
 			|| normalize(minirt->camera->orientation,
 					minirt->camera->orientation))
 	{
@@ -163,7 +163,7 @@ static bool	_set_light(t_minirt *minirt, char **info)
 		return (1);
 	}
 	if (sizeof(info) / sizeof(char *) == 4)
-		if (ato3(info[3], minirt->light->rgb, FLOAT))
+		if (parse_colors(info[3], minirt->light->rgb))
 			return (1);
 	minirt->light = malloc(sizeof(t_light));
 	if (!minirt->light)
@@ -171,7 +171,7 @@ static bool	_set_light(t_minirt *minirt, char **info)
 		perror(ERR_MALLOC);
 		return (1);
 	}
-	if (ato3(info[1], minirt->light->coords, FLOAT))
+	if (ato3(info[1], minirt->light->coords))
 	{
 		free(minirt->light);
 		minirt->light = NULL;
