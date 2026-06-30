@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
+/*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:20:22 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/24 15:10:08 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/06/29 20:26:47 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,13 @@ static bool	_is_invalid(t_minirt *minirt)
 {
 	if (!minirt->amb_light || !minirt->camera || !minirt->light)
 		return (true);
+	if (minirt->amb_light->ratio < 0.0F)
+		minirt->amb_light->ratio = 0.0F;
+	if (minirt->amb_light->ratio > 1.0F)
+		minirt->amb_light->ratio = 1.0F;
+	if (minirt->light->brightness < 0.0F)
+		minirt->light->brightness = 0.0F;
+	if (minirt->light->brightness > 1.0F)
+		minirt->light->brightness = 1.0F;
 	return (false);
 }

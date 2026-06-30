@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 07:04:17 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/29 16:02:50 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/06/29 20:31:16 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 
 # include "../Elements/elements.h"
 # include "../minirt_struct.h"
+# include <limits.h>
 
-void		get_normal(float target[3], t_pixel *pixel, t_element *gelement);
+int		get_color(t_minirt *minirt, t_element *close_elem);
+void	get_normal(float target[3], t_pixel *pixel, t_element *gelement);
+float	get_brightness(t_minirt *minirt, t_element *gelement);
+int		get_color(t_minirt *minirt, t_element *close_elem);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 15:06:27 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/29 10:49:47 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/06/29 20:14:08 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ unsigned char	ft_atouc(char *str)
 	nbr = 0;
 	while (ft_isdigit(str[i]))
 	{
-		if ((UCHAR_MAX - (str[i] - '0')) / 10 < nbr)
-			return (UCHAR_MAX);
+		if ((255 - (str[i] - '0')) / 10 < nbr)
+			return (255);
 		nbr += nbr * 10 + (str[i] - '0');
 	}
 	return (nbr);
