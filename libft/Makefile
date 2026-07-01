@@ -6,7 +6,7 @@
 #    By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/17 14:57:32 by yuknakas          #+#    #+#              #
-#    Updated: 2026/07/01 11:55:57 by yuknakas         ###   ########.fr        #
+#    Updated: 2026/07/01 12:07:50 by yuknakas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,15 +45,15 @@ all: libft gnl gnl_bon libft_bonus
 
 libft: $(OBJS_MAN)
 	@ar rcs $(NAME_LIBFT) $(OBJS_MAN)
-	@echo "> make libft executed in 00_libft"
+	@echo "> make libft executed in libft"
 
 gnl: libft $(OBJS_GNL)
 	@ar rcs $(NAME_GNL)	$(OBJS_GNL) $(NAME_LIBFT)
-	@echo "> make gnl executed in 00_libft"
+	@echo "> make gnl executed in libft"
 
 gnl_bon: libft $(OBJS_GNL_BON)
 	@ar rcs $(NAME_GNL_BON)	$(OBJS_GNL_BON) $(NAME_LIBFT)
-	@echo "> make gnl_bon executed in 00_libft"
+	@echo "> make gnl_bon executed in libft"
 
 %.o: %.c
 	@$(CCW) -c $< -o $@
@@ -63,15 +63,15 @@ libft_bonus: $(BONUS_FLAG)
 $(BONUS_FLAG): $(OBJS_MAN) $(OBJS_BON)
 	@ar rcs $(NAME_LIBFT) $(OBJS_BON)
 	@touch $(BONUS_FLAG)
-	@echo "> make libft_bonus executed in 00_libft"
+	@echo "> make libft_bonus executed in libft"
 
 clean:
 	@rm -f $(OBJS) $(BONUS_FLAG)
-	@echo "> make clean executed in 00_libft"
+	@echo "> make clean executed in libft"
 
 fclean: clean
 	@rm -f $(NAME_LIBFT) $(NAME_GNL) $(NAME_GNL_BON)
-	@echo "> make fclean executed in 00_libft"
+	@echo "> make fclean executed in libft"
 
 re: fclean all
 

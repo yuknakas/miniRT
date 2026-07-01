@@ -6,14 +6,14 @@
 #    By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/01 11:44:22 by yuknakas          #+#    #+#              #
-#    Updated: 2026/07/01 11:52:15 by yuknakas         ###   ########.fr        #
+#    Updated: 2026/07/01 12:07:36 by yuknakas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	minirt
 CCW		=	cc -Wall -Wextra -Werror -O2
 
-LIBS	=	-Llibft -lft -Lminilibx-linux -lmlx -lX11 -lXext
+LIBS	=	-Llibft -lgnl -lft -Lminilibx-linux -lmlx -lX11 -lXext -lm
 
 RMFLAG	=	rm -rf
 
@@ -36,8 +36,9 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(MAKE) libft -C ./libft
-	@$(CCW) $(OBJS) $(CFLAG)
-	@echo "> make fract-ol executed in current directory"
+	@$(MAKE) gnl -C ./libft
+	@$(CCW) $(OBJS) $(CFLAG) $(LIBS) -o $(NAME)
+	@echo "> make minirt executed in current directory"
 
 %.o: %.c
 	@$(CCW) -c $< -o $@
