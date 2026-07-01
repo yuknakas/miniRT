@@ -6,13 +6,14 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:37:34 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/29 15:47:07 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 10:33:48 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
 bool		set_element(t_minirt *minirt, char *line);
+static bool	_set_acl(t_minirt *minirt, char **info);
 static bool	_set_amb_light(t_minirt *minirt, char **info);
 static bool	_set_camera(t_minirt *minirt, char **info);
 static bool	_set_light(t_minirt *minirt, char **info);
@@ -28,7 +29,7 @@ bool	set_element(t_minirt *minirt, char *line)
 	char		**info;
 	bool		success;
 
-	info = ft_split(line, " ");
+	info = ft_split(line, ' ');
 	if (info == NULL || info[0] == NULL)
 	{
 		free(info);
@@ -38,7 +39,7 @@ bool	set_element(t_minirt *minirt, char *line)
 		success = _set_acl(minirt, info);
 	else
 		success = set_spc(minirt, info);
-	_free_char_dp(info);
+	free_char_dp(info);
 	return (success);
 }
 
@@ -90,7 +91,7 @@ static bool	_set_amb_light(t_minirt *minirt, char **info)
 		perror("Error: Cannot have two or more Ambient Lights");
 		return (1);
 	}
-	if (sizeof(info) / sizeof(char *) <= 3)
+	if (arr_len(info) < 3)
 	{
 		perror("Error: Insufficient arguments for Ambient Light");
 		return (1);
@@ -121,7 +122,7 @@ static bool	_set_amb_light(t_minirt *minirt, char **info)
  */
 static bool	_set_camera(t_minirt *minirt, char **info)
 {
-	if (sizeof(info) / sizeof(char *) <= 4)
+	if (arr_len(info) < 4)
 	{
 		perror("Error: Insufficient arguments for Camera");
 		return (1);
@@ -132,8 +133,8 @@ static bool	_set_camera(t_minirt *minirt, char **info)
 		perror(ERR_MALLOC);
 		return (1);
 	}
-	if (ato3(info[1], minirt->camera->coords)
-			|| ato3(info[2], minirt->camera->orientation)
+	if (ato3f(info[1], minirt->camera->coords)
+			|| ato3f(info[2], minirt->camera->orientation)
 			|| normalize(minirt->camera->orientation,
 					minirt->camera->orientation))
 	{
@@ -157,12 +158,12 @@ static bool	_set_camera(t_minirt *minirt, char **info)
  */
 static bool	_set_light(t_minirt *minirt, char **info)
 {
-	if (sizeof(info) / sizeof(char *) <= 3)
+	if (arr_len(info) < 3)
 	{
 		perror("Error: Insufficient arguments for Light");
 		return (1);
 	}
-	if (sizeof(info) / sizeof(char *) == 4)
+	if (arr_len(info) == 3)
 		if (parse_colors(info[3], minirt->light->rgb))
 			return (1);
 	minirt->light = malloc(sizeof(t_light));
@@ -171,7 +172,7 @@ static bool	_set_light(t_minirt *minirt, char **info)
 		perror(ERR_MALLOC);
 		return (1);
 	}
-	if (ato3(info[1], minirt->light->coords))
+	if (ato3f(info[1], minirt->light->coords))
 	{
 		free(minirt->light);
 		minirt->light = NULL;

@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 13:41:07 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/29 15:48:54 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 10:31:55 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static bool	_set_sphere(t_minirt *minirt, char **info)
 {
 	t_sphere	*sphere;
 	
-	if (sizeof(info) / sizeof(char *) <= 4)
+	if (arr_len(info) < 4)
 	{
 		perror("Error: Insufficient arguments for Sphere");
 		return (1);
@@ -63,7 +63,7 @@ static bool	_set_sphere(t_minirt *minirt, char **info)
 		perror(ERR_MALLOC);
 		return (1);
 	}
-	if (ato3(info[1], sphere->coords)
+	if (ato3f(info[1], sphere->coords)
 			|| parse_colors(info[3], sphere->rgb))
 	{
 		free(sphere);
@@ -85,7 +85,7 @@ static bool	_set_plane(t_minirt *minirt, char **info)
 {
 	t_plane	*plane;
 	
-	if (sizeof(info) / sizeof(char *) <= 4)
+	if (arr_len(info) < 4)
 	{
 		perror("Error: Insufficient arguments for Plane");
 		return (1);
@@ -96,8 +96,8 @@ static bool	_set_plane(t_minirt *minirt, char **info)
 		perror(ERR_MALLOC);
 		return (1);
 	}
-	if (ato3(info[1], plane->coords)
-			|| ato3(info[2], plane->normal)
+	if (ato3f(info[1], plane->coords)
+			|| ato3f(info[2], plane->normal)
 			|| parse_colors(info[3], plane->rgb)
 			|| normalize(plane->normal, plane->normal))
 	{
@@ -120,7 +120,7 @@ static bool	_set_cylinder(t_minirt *minirt, char **info)
 {
 	t_cylinder	*cyl;
 	
-	if (sizeof(info) / sizeof(char *) <= 6)
+	if (arr_len(info) < 6)
 	{
 		perror("Error: Insufficient arguments for Cylinder");
 		return (1);
@@ -131,7 +131,7 @@ static bool	_set_cylinder(t_minirt *minirt, char **info)
 		perror(ERR_MALLOC);
 		return (1);
 	}
-	if (ato3(info[1], cyl->coords) || ato3(info[2], cyl->normal)
+	if (ato3f(info[1], cyl->coords) || ato3f(info[2], cyl->normal)
 			|| parse_colors(info[5], cyl->rgb)
 			|| normalize(cyl->normal, cyl->normal))
 	{

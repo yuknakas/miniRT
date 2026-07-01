@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 10:55:46 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/29 15:46:25 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 09:23:46 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	setup_screen(t_camera *camera)
 	}
 	camera->fov = camera->fov_d / 180 * PI;
 	camera->width = FOCAL_DIST * tanf(camera->fov);
-	camera->height = camera->width / 16.0F * 9.0F;
+	camera->height = camera->width / (float)(WIDTH * HEIGHT);
 	_find_vectors(camera);
 }
 

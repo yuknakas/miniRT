@@ -6,15 +6,15 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 09:41:00 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/29 07:57:06 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 10:31:02 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "elements.h"
 
 float	ray_cylinder(float origin[3], float ray[3], t_cylinder *cyl, float min);
-float	_cyl_surface(float origin[3], float ray[3], t_cylinder *cyl, float min);
-float	_det_cyl(float origin[3], float ray[3], t_cylinder *cyl, float b[3]);
+float	_cyl_surface(float ray[3], t_cylinder *cyl, float min);
+float	_det_cyl(float ray[3], t_cylinder *cyl, float b[3]);
 void	_set_dist(float dist[2], float det, float n_crs_a[3], float b_crs_a[3]);
 bool	_t_cyl(float origin[3], float ray[3], t_cylinder *cyl, float dist);
 
@@ -34,7 +34,7 @@ float	ray_cylinder(float origin[3], float ray[3], t_cylinder *cyl, float min)
 {
 	float	dist[2];
 
-	dist[0] = _cyl_surface(origin, ray, cyl, min);
+	dist[0] = _cyl_surface(ray, cyl, min);
 	dist[1] = cylinder_end(origin, ray, cyl, min);
 	if (dist[0] < dist[1] && dist[0] >= min)
 	{
@@ -52,14 +52,13 @@ float	ray_cylinder(float origin[3], float ray[3], t_cylinder *cyl, float min)
 
 /**
  * Finds the distance to intersect the surface of a cylinder
- * @param origin pointer float[3] that represents the origin of ray
  * @param ray pointer to float[3] vector ray from camera to pixel
  * @param cyl pointer to t_cylinder struct that is tested intersection
  * @param min the length to screen, aka the minimum distance to appear
  * @return the distance from camera to intersecting point on side surface
  * If no intersection, return -1.0F
  */
-float	_cyl_surface(float origin[3], float ray[3], t_cylinder *cyl, float min)
+float	_cyl_surface(float ray[3], t_cylinder *cyl, float min)
 {
 	float	det;
 	float	n_cross_a[3];
@@ -69,7 +68,7 @@ float	_cyl_surface(float origin[3], float ray[3], t_cylinder *cyl, float min)
 	cyl->center[0] = cyl->coords[0] + -(cyl->height / 2) * cyl->normal[0];
 	cyl->center[1] = cyl->coords[1] + -(cyl->height / 2) * cyl->normal[1];
 	cyl->center[2] = cyl->coords[2] + -(cyl->height / 2) * cyl->normal[2];
-	det = _det_cyl(origin, ray, cyl, cyl->center);
+	det = _det_cyl(ray, cyl, cyl->center);
 	if (det < 0.0F)
 		return (-1.0F);
 	if (det < EPSILON)
@@ -86,13 +85,12 @@ float	_cyl_surface(float origin[3], float ray[3], t_cylinder *cyl, float min)
 
 /**
  * Finds the determinant of a line-cylinder intersection
- * @param origin pointer float[3] that represents the origin of ray
  * @param ray pointer to float[3] vector ray from camera to pixel
  * @param cyl pointer to t_cylinder struct that is tested intersection
  * @param b the center of the end circle
  * @return float value of the determinant
  */
-float	_det_cyl(float origin[3], float ray[3], t_cylinder *cyl, float b[3])
+float	_det_cyl(float ray[3], t_cylinder *cyl, float b[3])
 {
 	float	n_cross_a[3];
 

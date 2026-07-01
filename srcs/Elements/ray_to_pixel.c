@@ -6,13 +6,14 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 20:50:35 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/29 20:41:53 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 10:18:46 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "elements.h"
 
-float	ray_to_pixel(t_camera *camera, int x, int y, float v_target[3]);
+float		ray_to_pixel(t_camera *camera, int x, int y, float v_target[3]);
+static void	_pixel_to_screen(t_camera *camera, int x, int y, float target[3]);
 
 /**
  * Finds vector from the coordinates of the camera to the coordinates of 
@@ -42,7 +43,7 @@ float	ray_to_pixel(t_camera *camera, int x, int y, float v_target[3])
  * @param y y coordinate of pixel on the display
  * @param target pointer to where the coordinate should be stored
  */
-void	_pixel_to_screen(t_camera *camera, int x, int y, float c_target[3])
+static void	_pixel_to_screen(t_camera *camera, int x, int y, float target[3])
 {
 	float	vert_dist;
 	float	hori_dist;
@@ -53,7 +54,7 @@ void	_pixel_to_screen(t_camera *camera, int x, int y, float c_target[3])
 	idx = 0;
 	while (idx < 3)
 	{
-		c_target[idx] = camera->center[idx] + vert_dist * camera->v_vert[idx]
+		target[idx] = camera->center[idx] + vert_dist * camera->v_vert[idx]
 			+ hori_dist * camera->v_hori[idx];
 		idx++;
 	}

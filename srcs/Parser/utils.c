@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 15:06:27 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/29 20:14:08 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 10:26:21 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 float			ft_atof(char *str);
 unsigned char	ft_atouc(char *str);
 void			free_char_dp(char **cdp);
+int				arr_len(char **arr);
 
 /**
  * Converts char string to float
@@ -92,4 +93,16 @@ void	free_char_dp(char **cdp)
 		i++;
 	}
 	free(cdp);
+}
+
+int	arr_len(char **arr)
+{
+	int	len;
+
+	if (!arr)
+		return (0);
+	len = 0;
+	while (arr[len])
+		len++;
+	return (len);
 }

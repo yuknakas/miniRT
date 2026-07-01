@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   elem_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
+/*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 11:35:36 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/24 13:53:34 by nakashibay       ###   ########.fr       */
+/*   Updated: 2026/07/01 10:21:02 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_element	*elem_new(void *in_element, t_elem_type type);
 bool		elem_append(t_element *elem_list, t_element *new_element);
-t_element	*elem_last_id(t_element *elem_list, int *id);
+t_element	*elem_last(t_element *elem_list);
 
 /**
  * Makes a new general element and returns the pointer
@@ -23,7 +23,7 @@ t_element	*elem_last_id(t_element *elem_list, int *id);
  * @return pointer to new general element that needs to be freed later.
  *  NULL if error allocating memory 
  */
-t_element	*elem_new(void *in_element, t_elem_type type)
+t_element	*elem_new(void *in_element, t_elem_type in_type)
 {
 	t_element	*new_elem;
 
@@ -34,7 +34,7 @@ t_element	*elem_new(void *in_element, t_elem_type type)
 		return (NULL);
 	}
 	new_elem->element = in_element;
-	new_elem->id = -1;
+	new_elem->type = in_type;
 	new_elem->next = NULL;
 	return (new_elem);
 }
@@ -49,12 +49,10 @@ t_element	*elem_new(void *in_element, t_elem_type type)
 bool	elem_append(t_element *elem_list, t_element *new_element)
 {
 	t_element	*last_elem;
-	int			last_id;
 
 	if (!new_element)
 		return (1);
-	last_elem = elem_last_id(elem_list, &last_id);
-	new_element->id = last_id + 1;
+	last_elem = elem_last(elem_list);
 	if (!last_elem)
 	{
 		elem_list = new_element;
@@ -68,20 +66,15 @@ bool	elem_append(t_element *elem_list, t_element *new_element)
  * Fetches the pointer to the last general element in a list, and
  *  sets the id for the last element in list
  * @param elem_list pointer to the first element in the list
- * @param id pointer to and int that will hold the id of the last element
  */
-t_element	*elem_last_id(t_element *elem_list, int *id)
+t_element	*elem_last(t_element *elem_list)
 {
 	t_element	*element;
-	*id = 0;
 
 	if (elem_list == NULL)
 		return (NULL);
 	element = elem_list;
 	while (element->next)
-	{
 		element = element->next;
-		*id++;
-	}
 	return (element);
 }

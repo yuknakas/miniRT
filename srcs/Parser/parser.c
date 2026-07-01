@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:20:22 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/29 20:26:47 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 10:22:29 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static bool	_is_invalid(t_minirt *minirt);
  * @param minirt pointer to t_minirt struct used for raytrace
  * @param infile char pointer to name of infile
  * @return boolean-true (1) if fail, 0 if okay
+ * 
+ * In case of fail, frees allocated memeory as needed.
  */
 bool	parse_input(t_minirt *minirt, char *infile)
 {
@@ -30,22 +32,26 @@ bool	parse_input(t_minirt *minirt, char *infile)
 	bool	fail;
 
 	if (!_isfiletype(infile))
-		return (false);
+		return (1);
 	fd = open(infile, O_RDONLY);
 	if (fd < 0)
 	{
 		perror(NULL);
 		return (1);
 	}
+	_init_minirt(minirt);
 	fail = _readline_loop(minirt, fd);
 	if (!fail)
 		fail = _is_invalid(minirt);
 	if (close(fd) < 0)
 	{
+		clean_minirt(minirt);
 		perror(NULL);
 		return (1);
 	}
-	return (fail);
+	if (fail)
+		clean_minirt(minirt);
+	return (0);
 }
 
 /**
@@ -75,7 +81,7 @@ static bool	_isfiletype(char *infile)
 		return (false);
 	}
 	len = ft_strlen(infile);
-	if (ft_strncmp(infile[len - 3], ".rt", 3));
+	if (ft_strncmp(&infile[len - 3], ".rt", 3))
 		return (true);
 	perror(ERR_FILETYPE);
 	return (false);

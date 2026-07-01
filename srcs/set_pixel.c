@@ -1,0 +1,47 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_pixel.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/01 09:25:04 by yuknakas          #+#    #+#             */
+/*   Updated: 2026/07/01 09:37:35 by yuknakas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minirt.h"
+
+void		color_image(t_minirt *minirt);
+static void	set_pixel(t_minirt *minirt);
+
+void	color_image(t_minirt *minirt)
+{
+	minirt->pixel.x = 0;
+	while (minirt->pixel.x < HEIGHT)
+	{
+		minirt->pixel.y = 0;
+		while (minirt->pixel.y < WIDTH)
+		{
+			set_pixel(minirt);
+			minirt->pixel.y++;
+		}
+		minirt->pixel.x++;
+	}
+	mlx_put_image_to_window(minirt->display.mlx, minirt->display.window,
+			minirt->display.image, 0, 0);
+	return ;
+}
+
+/**
+ * Sets the color of a pixel by calculating the closest element and the color
+ * @param minirt t_minirt struct, must have updated minirt->pixel.x and y values
+ */
+static void	set_pixel(t_minirt *minirt)
+{
+	int			*buf;
+
+	buf = minirt->display.ptr_to_image;
+	buf[(minirt->pixel.y * minirt->display.size_line / sizeof(int))
+			+ minirt->pixel.x] = get_color(minirt, get_close_elem(minirt));
+}

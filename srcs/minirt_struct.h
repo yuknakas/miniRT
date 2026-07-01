@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 13:41:50 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/29 16:05:59 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 10:27:53 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,16 @@
 # include "Elements/elements.h"
 # include "Display/display.h"
 
-typedef struct s_pixel t_pixel;
+// ==================== PIXEL STRUCT ========================================
+typedef struct s_pixel
+{
+	int			x;
+	int			y;
+	float		ray[3];
+	float		min;
+	float		poi[3];
+	float		normal[3];
+}	t_pixel;
 
 // ==================== MINIRT STRUCT ========================================
 typedef struct s_minirt
@@ -29,15 +38,5 @@ typedef struct s_minirt
 	t_element	*elements;
 }	t_minirt;
 
-typedef struct s_pixel
-{
-	int			x;
-	int			y;
-	float		ray[3];
-	float		min;
-	float		poi[3];
-	int			elem_id;
-	float		normal[3];
-}	t_pixel;
 
 #endif

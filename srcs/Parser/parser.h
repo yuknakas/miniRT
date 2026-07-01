@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:26:08 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/29 15:42:10 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 10:26:29 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <stdlib.h>
 
 // // =================== ENUM NUM_TYPE ========================================
 // typedef enum s_num_type
@@ -27,6 +28,8 @@
 //     UCHAR,
 //     FLOAT
 // } t_num_type;
+
+bool			parse_input(t_minirt *minirt, char *infile);
 
 bool			set_element(t_minirt *minirt, char *line);
 bool			set_spc(t_minirt *minirt, char **info);
@@ -40,6 +43,7 @@ void			free_char_dp(char **cdp);
 t_element		*elem_new(void *in_element, t_elem_type type);
 bool			elem_append(t_element *elem_list, t_element *new_element);
 t_element		*elem_last_id(t_element *elem_list, int *id);
+int				arr_len(char **arr);
 
 void			clean_minirt(t_minirt *minirt);
 

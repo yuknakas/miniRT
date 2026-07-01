@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 14:31:38 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/21 20:55:09 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 10:16:24 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdbool.h>
+# include <stdlib.h>
 # include "../../minilibx-linux/mlx.h"
 
 // =========================== Struct Display ================================
@@ -39,5 +40,6 @@ typedef struct s_display
 
 // =========================== Functions =====================================
 bool	setup_display(t_display *display);
+void	destroy_display(t_display *display);
 
 #endif

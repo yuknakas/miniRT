@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 19:14:29 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/29 20:30:29 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 10:14:17 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	get_color(t_minirt *minirt, t_element *close_elem)
 	brightness = get_brightness(minirt, close_elem);
 	if (brightness > 1.0F)
 		brightness = 1.0F;
-	elem_rgb = get_elem_rgb(close_elem);
+	elem_rgb = _get_elem_rgb(close_elem);
 	true_rgb[0] = elem_rgb[0] * brightness;
 	true_rgb[1] = elem_rgb[1] * brightness;
 	true_rgb[2] = elem_rgb[2] * brightness;

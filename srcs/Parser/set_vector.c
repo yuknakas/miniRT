@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 10:49:19 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/29 15:41:57 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 10:33:27 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ bool	parse_colors(char *str, float rgb[3])
 	while (i < 3)
 	{
 		val = ft_atouc(arr[i]);
-		if (val > 255)
-			val = 255;
 		rgb[i] = (float)val / 255.0F;
 	}
 	return (false);
@@ -84,7 +82,7 @@ static bool	_is_valid_3p(char **arr)
 		free(arr);
 		return (false);
 	}
-	if (sizeof(arr) / sizeof(char *) <= 3)
+	if (arr_len(arr) < 3)
 	{
 		free_char_dp(arr);
 		return (false);

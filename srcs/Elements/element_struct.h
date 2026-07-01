@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 20:40:36 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/29 15:38:59 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 10:21:06 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,12 @@ typedef enum s_elem_type
 }   t_elem_type;
 
 // ==================== ELEMENT STRUCT =======================================
+typedef struct s_element t_element;
+
 typedef struct s_element
 {
 	void		*element;
 	t_elem_type	type;
-	int			id; // id of element starting at 1
 	t_element	*next;
 }	t_element;
 
