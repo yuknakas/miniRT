@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 10:49:19 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/01 10:33:27 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 12:31:07 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ bool	parse_colors(char *str, float rgb[3])
 	{
 		val = ft_atouc(arr[i]);
 		rgb[i] = (float)val / 255.0F;
+		i++;
 	}
 	return (false);
 }

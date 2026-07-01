@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 15:06:27 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/07/01 10:26:21 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 12:31:26 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ float	ft_atof(char *str)
  */
 unsigned char	ft_atouc(char *str)
 {
-	size_t			i;
-	unsigned char	nbr;
+	size_t	i;
+	int		nbr;
 
 	i = 0;
 	nbr = 0;
@@ -73,9 +73,10 @@ unsigned char	ft_atouc(char *str)
 	{
 		if ((255 - (str[i] - '0')) / 10 < nbr)
 			return (255);
-		nbr += nbr * 10 + (str[i] - '0');
+		nbr = nbr * 10 + (str[i] - '0');
+		i++;
 	}
-	return (nbr);
+	return ((unsigned char)nbr);
 }
 
 /**

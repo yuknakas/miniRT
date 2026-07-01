@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 14:35:53 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/22 00:07:43 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 12:26:38 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 bool	setup_display(t_display *display)
 {
 	display->mlx = mlx_init();
-	display->window = mlx_new_window(display->mlx, HEIGHT, WIDTH, "miniRT");
-	display->image = mlx_new_image(display->mlx, HEIGHT, WIDTH);
+	display->window = mlx_new_window(display->mlx, WIDTH, HEIGHT, "miniRT");
+	display->image = mlx_new_image(display->mlx, WIDTH, HEIGHT);
 	display->ptr_to_image = mlx_get_data_addr(display->image,
 			&display->bits_per_pixel,
 			&display->size_line,

@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:20:22 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/07/01 10:22:29 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 12:39:21 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static bool	_isfiletype(char *infile)
 		return (false);
 	}
 	len = ft_strlen(infile);
-	if (ft_strncmp(&infile[len - 3], ".rt", 3))
+	if (!ft_strncmp(&infile[len - 3], ".rt", 3))
 		return (true);
 	perror(ERR_FILETYPE);
 	return (false);
