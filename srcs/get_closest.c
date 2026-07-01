@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 20:34:32 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/01 10:30:44 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 11:53:04 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_element	*get_close_elem(t_minirt *minirt)
 		}
 		gelement = gelement->next;
 	}
-	_set_poi(minirt, dist, pixel->poi);
+	_set_poi(minirt, dist_min, pixel->poi);
 	return (close_elem);
 }
 

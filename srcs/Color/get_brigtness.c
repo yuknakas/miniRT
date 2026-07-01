@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 16:00:41 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/29 16:45:52 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/01 11:54:24 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ static bool	_intercepts(float poi[3], float ray[3], t_element *gelement)
 {
 	float	dist;
 
+	dist = -1.0F;
 	if (gelement->type == SPHERE)
 		dist = ray_sphere(poi, ray, gelement->element, EPSILON);
 	else if (gelement->type == PLANE)
