@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 20:40:36 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/01 10:21:06 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/02 12:52:52 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_camera
 	float			coords[3]; //> coordinates of the camera itself
 	float			orientation[3]; //> orientation (view direction) of camera
 	unsigned char	fov_d; //> degrees of field of view (as input)
-	unsigned char	fov; // field of view in radients (converted)
+	float			fov; // field of view in radients (converted)
 	float			center[3]; // center of the screen
 	float			width; // width of the screen
 	float			height; // height of the screen

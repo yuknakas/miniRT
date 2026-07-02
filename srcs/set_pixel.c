@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/01 09:25:04 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/01 09:37:35 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/02 12:55:24 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	set_pixel(t_minirt *minirt);
 
 void	color_image(t_minirt *minirt)
 {
+	setup_screen(minirt->camera);
 	minirt->pixel.x = 0;
 	while (minirt->pixel.x < HEIGHT)
 	{
@@ -42,6 +43,6 @@ static void	set_pixel(t_minirt *minirt)
 	int			*buf;
 
 	buf = minirt->display.ptr_to_image;
-	buf[(minirt->pixel.y * minirt->display.size_line / sizeof(int))
-			+ minirt->pixel.x] = get_color(minirt, get_close_elem(minirt));
+	buf[(minirt->pixel.x * minirt->display.size_line / sizeof(int))
+			+ minirt->pixel.y] = get_color(minirt, get_close_elem(minirt));
 }

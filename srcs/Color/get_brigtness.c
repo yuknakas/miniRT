@@ -6,16 +6,16 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 16:00:41 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/01 11:54:24 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/02 14:29:02 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
 
 float			get_brightness(t_minirt *minirt, t_element *gelement);
-static float	_intensity_light(t_minirt *minirt);
+static float	_intensity_light(t_minirt *minirt, float poi_to_light[3]);
 static bool		_intercepts(float poi[3], float ray[3], t_element *gelement);
-static float	_get_dif_frac(t_minirt *minirt, t_element *gelement);
+static float	_get_frac(t_minirt *minirt, t_element *gelement, float ray[3]);
 
 /**
  * Gets the brightness applied on the point of intersection by the
@@ -27,15 +27,17 @@ float	get_brightness(t_minirt *minirt, t_element *gelement)
 	float	brightness;
 	float	intensity;
 	float	diffuse_frac;
+	float	poi_to_light[3];
 
 	brightness = minirt->amb_light->ratio;
-	intensity = _intensity_light(minirt);
-	if (intensity > 0.0F)
-		brightness += intensity;
-	diffuse_frac = _get_dif_frac(minirt, gelement);
+	v_subtract(minirt->light->coords, minirt->pixel.poi, poi_to_light);
+	intensity = _intensity_light(minirt, poi_to_light);
+	if (intensity < 0.0F)
+		return (brightness);
+	diffuse_frac = _get_frac(minirt, gelement, poi_to_light);
 	if (diffuse_frac < 0.0F)
-		return (0.0F);
-	return (brightness * diffuse_frac);
+		return (brightness);
+	return (brightness + intensity * diffuse_frac);
 }
 
 /**
@@ -44,13 +46,11 @@ float	get_brightness(t_minirt *minirt, t_element *gelement)
  * @param minirt minirt struct containing all relavant info
  * @return float value of distance to light, -1.0F if light is intercepted
  */
-static float	_intensity_light(t_minirt *minirt)
+static float	_intensity_light(t_minirt *minirt, float poi_to_light[3])
 {
-	float		poi_to_light[3];
 	t_element	*gelement;
 	float		dist;
 
-	v_subtract(minirt->light->coords, minirt->pixel.poi, poi_to_light);
 	gelement = minirt->elements;
 	while (gelement)
 	{
@@ -96,13 +96,13 @@ static bool	_intercepts(float poi[3], float ray[3], t_element *gelement)
  * the ray (camera->poi) is the opposite of poi->camera so the
  *  return value is multiplied with -1
  */
-static float	_get_dif_frac(t_minirt *minirt, t_element *gelement)
+static float	_get_frac(t_minirt *minirt, t_element *gelement, float ray[3])
 {
 	float	surface_normal[3];
 	float	diffuse_frac;
 
 	get_normal(surface_normal, &minirt->pixel, gelement);
-	diffuse_frac = dot(surface_normal, minirt->pixel.ray)
-			/ (v_len(surface_normal) * v_len(minirt->pixel.ray));
-	return (-diffuse_frac);
+	diffuse_frac = dot(surface_normal, ray)
+			/ (v_len(surface_normal) * v_len(ray));
+	return (diffuse_frac);
 }

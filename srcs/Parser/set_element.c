@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:37:34 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/07/01 10:33:48 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/02 12:48:53 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,6 @@ static bool	_set_camera(t_minirt *minirt, char **info)
 		return (1);
 	}
 	minirt->camera->fov_d = ft_atouc(info[3]);
-	setup_screen(minirt->camera);
 	return (0);
 }
 

@@ -6,14 +6,14 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/01 09:38:04 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/01 12:36:38 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/02 11:13:59 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 static bool	_init_setup(t_minirt *minirt, char *infile);
-static void	_close_setup(t_minirt *minirt);
+static int	_close_setup(t_minirt *minirt);
 
 int	main(int argc, char **argv)
 {
@@ -27,7 +27,8 @@ int	main(int argc, char **argv)
 	if (_init_setup(&minirt, argv[1]))
 		return (1);
 	color_image(&minirt);
-	_close_setup(&minirt);
+	mlx_hook(minirt.display.window, 17, 0L, _close_setup, &minirt);
+	mlx_loop(minirt.display.mlx);
 	return (0);
 }
 
@@ -53,8 +54,10 @@ static bool	_init_setup(t_minirt *minirt, char *infile)
  *  allocated memory
  * @param minirt minirt struct to close
  */
-static void	_close_setup(t_minirt *minirt)
+static int	_close_setup(t_minirt *minirt)
 {
 	destroy_display(&minirt->display);
 	clean_minirt(minirt);
+	exit(0);
+	return (0);
 }

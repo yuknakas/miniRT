@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 13:41:07 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/07/01 10:31:55 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/02 11:23:30 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static bool	_set_sphere(t_minirt *minirt, char **info)
 		return (1);
 	}
 	sphere->diameter = ft_atof(info[2]);
-	return (elem_append(minirt->elements, elem_new(sphere, SPHERE)));
+	return (elem_append(&minirt->elements, elem_new(sphere, SPHERE)));
 }
 
 /**
@@ -105,7 +105,7 @@ static bool	_set_plane(t_minirt *minirt, char **info)
 		perror(ERR_INV_NBR);
 		return (1);
 	}
-	return (elem_append(minirt->elements, elem_new(plane, PLANE)));
+	return (elem_append(&minirt->elements, elem_new(plane, PLANE)));
 }
 
 /**
@@ -141,5 +141,5 @@ static bool	_set_cylinder(t_minirt *minirt, char **info)
 	}
 	cyl->diameter = ft_atof(info[3]);
 	cyl->height = ft_atof(info[4]);
-	return (elem_append(minirt->elements, elem_new(cyl, CYL)));
+	return (elem_append(&minirt->elements, elem_new(cyl, CYL)));
 }

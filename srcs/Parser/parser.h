@@ -6,11 +6,11 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:26:08 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/07/01 12:02:44 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/02 11:23:07 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PAESER_H
+#ifndef PARSER_H
 # define PARSER_H
 
 # include "../minirt_struct.h"
@@ -41,7 +41,7 @@ bool			parse_colors(char *str, float rgb[3]);
 void			free_char_dp(char **cdp);
 
 t_element		*elem_new(void *in_element, t_elem_type type);
-bool			elem_append(t_element *elem_list, t_element *new_element);
+bool			elem_append(t_element **elem_list, t_element *new_element);
 t_element		*elem_last_id(t_element *elem_list, int *id);
 int				arr_len(char **arr);
 

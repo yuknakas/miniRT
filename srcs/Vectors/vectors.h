@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 09:55:24 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/22 11:36:39 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/02 14:31:45 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdbool.h>
 # include <math.h>
 
-# define EPSILON 1.0E-6F
+# define EPSILON 1.0E-5F
 # define ERR_MALLOC "Error: Memory allocation failed"
 
 float	dot(float v1[3], float v2[3]);

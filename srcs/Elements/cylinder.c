@@ -6,14 +6,14 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 09:41:00 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/01 10:31:02 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/02 11:39:55 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "elements.h"
 
 float	ray_cylinder(float origin[3], float ray[3], t_cylinder *cyl, float min);
-float	_cyl_surface(float ray[3], t_cylinder *cyl, float min);
+float	_cyl_surface(float origin[3], float ray[3], t_cylinder *cyl, float min);
 float	_det_cyl(float ray[3], t_cylinder *cyl, float b[3]);
 void	_set_dist(float dist[2], float det, float n_crs_a[3], float b_crs_a[3]);
 bool	_t_cyl(float origin[3], float ray[3], t_cylinder *cyl, float dist);
@@ -34,7 +34,7 @@ float	ray_cylinder(float origin[3], float ray[3], t_cylinder *cyl, float min)
 {
 	float	dist[2];
 
-	dist[0] = _cyl_surface(ray, cyl, min);
+	dist[0] = _cyl_surface(origin, ray, cyl, min);
 	dist[1] = cylinder_end(origin, ray, cyl, min);
 	if (dist[0] < dist[1] && dist[0] >= min)
 	{
@@ -52,13 +52,14 @@ float	ray_cylinder(float origin[3], float ray[3], t_cylinder *cyl, float min)
 
 /**
  * Finds the distance to intersect the surface of a cylinder
+ * @param origin pointer float[3] that represents the origin of ray
  * @param ray pointer to float[3] vector ray from camera to pixel
  * @param cyl pointer to t_cylinder struct that is tested intersection
  * @param min the length to screen, aka the minimum distance to appear
  * @return the distance from camera to intersecting point on side surface
  * If no intersection, return -1.0F
  */
-float	_cyl_surface(float ray[3], t_cylinder *cyl, float min)
+float	_cyl_surface(float origin[3], float ray[3], t_cylinder *cyl, float min)
 {
 	float	det;
 	float	n_cross_a[3];
@@ -76,9 +77,9 @@ float	_cyl_surface(float ray[3], t_cylinder *cyl, float min)
 	cross(ray, cyl->normal, n_cross_a);
 	cross(cyl->center, cyl->normal, b_cross_a);
 	_set_dist(dist, det, n_cross_a, b_cross_a);
-	if (dist[0] >= min && _t_cyl(cyl->normal, ray, cyl, dist[0]))
+	if (dist[0] >= min && _t_cyl(origin, ray, cyl, dist[0]))
 		return (dist[0]);
-	if (dist[1] >= min && _t_cyl(cyl->normal, ray, cyl, dist[1]))
+	if (dist[1] >= min && _t_cyl(origin, ray, cyl, dist[1]))
 		return (dist[1]);
 	return (-1.0F);
 }

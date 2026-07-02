@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 20:50:35 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/01 12:35:06 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/02 12:50:05 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ float	ray_to_pixel(t_camera *camera, int x, int y, float v_target[3])
 	float	dist;
 
 	_pixel_to_screen(camera, x, y, coord_pixel);
-	v_subtract(coord_pixel, camera->center, v_target);
+	v_subtract(coord_pixel, camera->coords, v_target);
 	dist = v_len(v_target);
 	normalize(v_target, v_target);
 	return (dist);

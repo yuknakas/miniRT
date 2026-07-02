@@ -51,4 +51,8 @@ Data types
 1. x, y of pixel and all relavant display info
 2. vector to pixel, min distance
 3. closest object id, distance
-4. point of intersection, normal
+4. point of intersection, normal  
+
+
+Bugs  
+- A makes the whole color change

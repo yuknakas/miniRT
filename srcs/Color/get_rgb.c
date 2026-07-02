@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 19:14:29 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/01 10:14:17 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/02 11:51:07 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	_rgb_to_color(float rgb[3])
 	i = 0;
 	while (i < 3)
 	{
-		color = color * UCHAR_MAX + (int)roundf(rgb[i] * 255);
+		color = color * 256 + (int)roundf(rgb[i] * 255);
 		i++;
 	}
 	return (color);

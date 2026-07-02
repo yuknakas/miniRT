@@ -6,14 +6,14 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 11:35:36 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/07/01 10:21:02 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/02 11:23:00 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
 t_element	*elem_new(void *in_element, t_elem_type type);
-bool		elem_append(t_element *elem_list, t_element *new_element);
+bool		elem_append(t_element **elem_list, t_element *new_element);
 t_element	*elem_last(t_element *elem_list);
 
 /**
@@ -46,16 +46,16 @@ t_element	*elem_new(void *in_element, t_elem_type in_type)
  * @param new_element the new element to be added to the list
  * @return boolean-1 if error, 0 if ok
  */
-bool	elem_append(t_element *elem_list, t_element *new_element)
+bool	elem_append(t_element **elem_list, t_element *new_element)
 {
 	t_element	*last_elem;
 
 	if (!new_element)
 		return (1);
-	last_elem = elem_last(elem_list);
+	last_elem = elem_last(*elem_list);
 	if (!last_elem)
 	{
-		elem_list = new_element;
+		*elem_list = new_element;
 		return (0);
 	}
 	last_elem->next = new_element;

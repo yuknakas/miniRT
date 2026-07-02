@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 10:55:46 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/01 09:23:46 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/02 12:53:40 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	setup_screen(t_camera *camera)
 					Setting FOV to 179");
 		camera->fov_d = 179;
 	}
-	camera->fov = camera->fov_d / 180 * PI;
-	camera->width = FOCAL_DIST * tanf(camera->fov);
-	camera->height = camera->width / (float)(WIDTH * HEIGHT);
+	camera->fov = (float)camera->fov_d / 180.0F * PI;
+	camera->width = 2.0F * FOCAL_DIST * tanf(camera->fov);
+	camera->height = camera->width / (float)(WIDTH / HEIGHT);
 	_find_vectors(camera);
 }
 

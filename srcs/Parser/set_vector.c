@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 10:49:19 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/01 12:31:07 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/02 11:19:05 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ bool	ato3f(char *str, float target[3])
 
 	arr = ft_split(str, ',');
 	if (!_is_valid_3p(arr))
+	{
+		free_char_dp(arr);
 		return (true);
+	}
 	i = 0;
 	while (i < 3)
 	{
@@ -58,7 +61,10 @@ bool	parse_colors(char *str, float rgb[3])
 
 	arr = ft_split(str, ',');
 	if (!_is_valid_3p(arr))
+	{
+		free_char_dp(arr);
 		return (true);
+	}
 	i = 0;
 	while (i < 3)
 	{
@@ -66,6 +72,7 @@ bool	parse_colors(char *str, float rgb[3])
 		rgb[i] = (float)val / 255.0F;
 		i++;
 	}
+	free_char_dp(arr);
 	return (false);
 }
 
