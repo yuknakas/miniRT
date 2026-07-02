@@ -6,7 +6,7 @@
 #    By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/01 11:44:22 by yuknakas          #+#    #+#              #
-#    Updated: 2026/07/01 12:07:36 by yuknakas         ###   ########.fr        #
+#    Updated: 2026/07/02 12:33:43 by yuknakas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ PARSER	=	srcs/Parser/clean.c srcs/Parser/elem_utils.c srcs/Parser/parser.c \
 VECTORS	=	srcs/Vectors/vectors.c srcs/Vectors/vectors2.c
 
 SRCS	=	$(SRC) $(COLORS) $(DISPLAY) $(ELEMENT) $(PARSER) $(VECTORS)
-OBJS	=	$(SRCS:.c=.o)
+OBJS	=	$(SRCS:srcs/%.c=objs/%.o)
 
 all: $(NAME)
 
@@ -40,14 +40,15 @@ $(NAME): $(OBJS)
 	@$(CCW) $(OBJS) $(CFLAG) $(LIBS) -o $(NAME)
 	@echo "> make minirt executed in current directory"
 
-%.o: %.c
+objs/%.o: srcs/%.c
+	mkdir -p $(dir $@)
 	@$(CCW) -c $< -o $@
 
 bonus: all
 
 clean:
 	@$(MAKE) clean -C ./libft
-	@$(RMFLAG) $(OBJS)
+	@$(RMFLAG) objs
 	@echo "> clean executed in current directory"
 
 fclean: clean
