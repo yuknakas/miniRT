@@ -56,3 +56,23 @@ Data types
 
 Bugs  
 - A makes the whole color change
+
+|| a x (p - b) || = r
+
+L = s + td
+
+|| a x (s + td - b) || = r
+
+(a x (s + td - b)) * (a x (s + td - b)) = r2
+
+(axs + axtd - axb) * (axs + axtd - axb) = r2
+
+(A + B - C) * (A + B - C) = r2
+
+A*A + A*B - A*C + A*B + B*B - B*C - A*C - B*C + C*C = r2
+
+A*A + 2A*B - 2A*C + B*B - 2B*C + C*C = r2
+A*A + B*B + C*C + 2(B*(A + C)) - 2A*C
+
+axs2 + axtd2 + axb2 + 2(axtd*(axs + axb)) - 2axs*axb = r2
+

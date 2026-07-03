@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 09:41:00 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/02 11:39:55 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/03 17:28:40 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ float	ray_cylinder(float origin[3], float ray[3], t_cylinder *cyl, float min)
 
 	dist[0] = _cyl_surface(origin, ray, cyl, min);
 	dist[1] = cylinder_end(origin, ray, cyl, min);
-	if (dist[0] < dist[1] && dist[0] >= min)
+	if ((dist[0] < dist[1] || dist[1] < 0.0F) && dist[0] >= min)
 	{
 		cyl->hit_type = SIDE;
 		return (dist[0]);
@@ -46,7 +46,6 @@ float	ray_cylinder(float origin[3], float ray[3], t_cylinder *cyl, float min)
 		cyl->hit_type = END;
 		return (dist[1]);
 	}
-	cyl->hit_type = NONE;
 	return (-1.0F);
 }
 
@@ -64,18 +63,20 @@ float	_cyl_surface(float origin[3], float ray[3], t_cylinder *cyl, float min)
 	float	det;
 	float	n_cross_a[3];
 	float	b_cross_a[3];
+	float	b_min_c[3];
 	float	dist[2];
 
 	cyl->center[0] = cyl->coords[0] + -(cyl->height / 2) * cyl->normal[0];
 	cyl->center[1] = cyl->coords[1] + -(cyl->height / 2) * cyl->normal[1];
 	cyl->center[2] = cyl->coords[2] + -(cyl->height / 2) * cyl->normal[2];
-	det = _det_cyl(ray, cyl, cyl->center);
+	v_subtract(cyl->center, origin, b_min_c);
+	det = _det_cyl(ray, cyl, b_min_c);
 	if (det < 0.0F)
 		return (-1.0F);
 	if (det < EPSILON)
 		det = 0.0F;
 	cross(ray, cyl->normal, n_cross_a);
-	cross(cyl->center, cyl->normal, b_cross_a);
+	cross(b_min_c, cyl->normal, b_cross_a);
 	_set_dist(dist, det, n_cross_a, b_cross_a);
 	if (dist[0] >= min && _t_cyl(origin, ray, cyl, dist[0]))
 		return (dist[0]);

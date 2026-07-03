@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 07:05:30 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/29 08:13:58 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/03 17:26:34 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ static void	_normal_cylinder_side(float target[3], float poi[3], t_cylinder *cyl
 	float	poi_center[3];
 	int		i;
 
-	v_subtract(poi, cyl->center, poi_min_base);
+	v_subtract(cyl->center, poi, poi_min_base);
 	poi_height = dot(poi_min_base, cyl->normal);
 	i = 0;
 	while (i < 3)
