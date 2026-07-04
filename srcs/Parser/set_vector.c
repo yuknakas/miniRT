@@ -80,20 +80,14 @@ bool	parse_colors(char *str, float rgb[3])
  * Checks if an char double pointer array is valid for ectracting 3 nbr
  * @param arr array to char double pointer
  * @return boolean-true if valid, false if not
- * 
- * This also handles frees
+ *
+ * Pure predicate: does not free arr. Freeing is the caller's job.
  */
 static bool	_is_valid_3p(char **arr)
 {
 	if (arr == NULL)
-	{
-		free(arr);
 		return (false);
-	}
 	if (arr_len(arr) < 3)
-	{
-		free_char_dp(arr);
 		return (false);
-	}
 	return (true);
 }

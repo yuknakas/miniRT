@@ -39,8 +39,8 @@ void	setup_screen(t_camera *camera)
 		camera->fov_d = 179;
 	}
 	camera->fov = (float)camera->fov_d / 180.0F * PI;
-	camera->width = 2.0F * FOCAL_DIST * tanf(camera->fov);
-	camera->height = camera->width / (float)(WIDTH / HEIGHT);
+	camera->width = 2.0F * FOCAL_DIST * tanf(camera->fov / 2.0F);
+	camera->height = camera->width / ((float)WIDTH / (float)HEIGHT);
 	_find_vectors(camera);
 }
 

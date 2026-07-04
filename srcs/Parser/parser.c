@@ -51,7 +51,7 @@ bool	parse_input(t_minirt *minirt, char *infile)
 	}
 	if (fail)
 		clean_minirt(minirt);
-	return (0);
+	return (fail);
 }
 
 /**
@@ -81,7 +81,7 @@ static bool	_isfiletype(char *infile)
 		return (false);
 	}
 	len = ft_strlen(infile);
-	if (!ft_strncmp(&infile[len - 3], ".rt", 3))
+	if (len >= 3 && !ft_strncmp(&infile[len - 3], ".rt", 3))
 		return (true);
 	perror(ERR_FILETYPE);
 	return (false);

@@ -117,11 +117,11 @@ float	_ray_incircle(float origin[3], float ray[3], t_cylinder *cyl, float min)
 		if (!_is_incircle(c_min_o, ray, dist[idx], cyl->diameter))
 			dist[idx] = -1.0F;
 	}
-    if (dist[0] >= min && (dist[0] < dist[1] || dist[1] < min))
-        return dist[0];
-    if (dist[1] >= min)
-        return dist[1];
-    return (-1.0f);
+	if (dist[0] >= min && (dist[0] < dist[1] || dist[1] < min))
+		return (dist[0]);
+	if (dist[1] >= min)
+		return (dist[1]);
+	return (-1.0F);
 }
 
 /**
