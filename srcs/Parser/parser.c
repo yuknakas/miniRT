@@ -36,7 +36,7 @@ bool	parse_input(t_minirt *minirt, char *infile)
 	fd = open(infile, O_RDONLY);
 	if (fd < 0)
 	{
-		perror(NULL);
+		print_errno("Error\nFailed to open infile: ");
 		return (1);
 	}
 	_init_minirt(minirt);
@@ -46,7 +46,7 @@ bool	parse_input(t_minirt *minirt, char *infile)
 	if (close(fd) < 0)
 	{
 		clean_minirt(minirt);
-		perror(NULL);
+		print_errno("Error\nFailed to close infile: ");
 		return (1);
 	}
 	if (fail)
@@ -77,13 +77,13 @@ static bool	_isfiletype(char *infile)
 
 	if (infile == NULL)
 	{
-		perror(ERR_NULL_IN);
+		ft_putstr_fd(ERR_NULL_IN, 2);
 		return (false);
 	}
 	len = ft_strlen(infile);
 	if (len >= 3 && !ft_strncmp(&infile[len - 3], ".rt", 3))
 		return (true);
-	perror(ERR_FILETYPE);
+	ft_putstr_fd(ERR_FILETYPE, 2);
 	return (false);
 }
 

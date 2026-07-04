@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "display.h"
+#include "../../libft/libft.h"
 
 /**
  * Sets up mlx display
@@ -29,7 +30,7 @@ bool	setup_display(t_display *display)
 	if (!display->mlx || !display->window
 		|| !display->image || !display->ptr_to_image)
 	{
-		perror("Error: Failed to setup window");
+		ft_putstr_fd("Error: Failed to setup window\n", 2);
 		return (true);
 	}
 	return (false);

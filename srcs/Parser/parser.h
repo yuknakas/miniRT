@@ -44,13 +44,14 @@ t_element		*elem_new(void *in_element, t_elem_type type);
 bool			elem_append(t_element **elem_list, t_element *new_element);
 t_element		*elem_last_id(t_element *elem_list, int *id);
 int				arr_len(char **arr);
+void			print_errno(char *msg);
 
 void			clean_minirt(t_minirt *minirt);
 
-# define ERR_NULL_IN "Error: Infile cannot be NULL"
-# define ERR_FILETYPE "Error: Wrong infile type. Must be .rt"
-# define ERR_INV_ELEM "Error: Invalid element identifier found"
+# define ERR_NULL_IN "Error: Infile cannot be NULL\n"
+# define ERR_FILETYPE "Error: Wrong infile type. Must be .rt\n"
+# define ERR_INV_ELEM "Error: Invalid element identifier found\n"
 # define ERR_INV_NBR "Error: Invalid number, vectors cannot be zero-vectors \
-and 3 number arrays must be separated with only commas."
+and 3 number arrays must be separated with only commas.\n"
 
 #endif
