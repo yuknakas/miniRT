@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 10:55:46 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/02 12:53:40 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/04 18:03:08 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	setup_screen(t_camera *camera)
 	camera->fov = (float)camera->fov_d / 180.0F * PI;
 	camera->width = 2.0F * FOCAL_DIST * tanf(camera->fov / 2.0F);
 	camera->height = camera->width / ((float)WIDTH / (float)HEIGHT);
+	camera->ratio = camera->width / (float)WIDTH;
+	printf("New: %f, %f\n", camera->width, camera->height);
 	_find_vectors(camera);
 }
 
@@ -94,9 +96,9 @@ static void	_set_vert(t_camera *camera)
 	normalize(camera->v_vert, camera->v_vert);
 	if (camera->v_vert[1] > 0.0F)
 	{
-		camera->v_vert[0] *= -1;
-		camera->v_vert[1] *= -1;
-		camera->v_vert[2] *= -1;
+		camera->v_vert[0] *= -1.0F;
+		camera->v_vert[1] *= -1.0F;
+		camera->v_vert[2] *= -1.0F;
 	}
 }
 

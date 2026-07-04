@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 20:40:36 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/02 12:52:52 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/04 18:02:38 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_camera
 	float			center[3]; // center of the screen
 	float			width; // width of the screen
 	float			height; // height of the screen
+	float			ratio; // ratio of pixel-to-3d world
 	float			v_hori[3]; // horizontal (right) component of the screen
 	float			v_vert[3]; // vertical (down) component of the screen
 }	t_camera;

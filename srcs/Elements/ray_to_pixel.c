@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 20:50:35 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/02 12:50:05 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/04 18:03:27 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static void	_pixel_to_screen(t_camera *camera, int x, int y, float target[3])
 	float	hori_dist;
 	int		idx;
 
-	vert_dist = (float)(x - HEIGHT / 2) / camera->height;
-	hori_dist = (float)(y - WIDTH / 2) / camera->width;
+	vert_dist = (float)(x - HEIGHT / 2) * (camera->ratio);
+	hori_dist = (float)(y - WIDTH / 2) * (camera->ratio);
 	idx = 0;
 	while (idx < 3)
 	{
