@@ -13,8 +13,8 @@
 #include "parser.h"
 
 void		clean_minirt(t_minirt *minirt);
-static void	_clean_ptr(void *ptr);
-static void	_clean_element(t_element *elements);
+static void	_clean_ptr(void **ptr);
+static void	_clean_element(t_element **elements);
 
 /**
  * Frees memory allocated for pointers in t_minirt
@@ -22,40 +22,42 @@ static void	_clean_element(t_element *elements);
  */
 void		clean_minirt(t_minirt *minirt)
 {
-	_clean_ptr(minirt->amb_light);
-	_clean_ptr(minirt->camera);
-	_clean_ptr(minirt->light);
-	_clean_element(minirt->elements);
+	_clean_ptr((void **)&minirt->amb_light);
+	_clean_ptr((void **)&minirt->camera);
+	_clean_ptr((void **)&minirt->light);
+	_clean_element(&minirt->elements);
 }
 
 /**
- * Checks if a pointer exists, then frees
- * @param ptr ptr to check and free
- * 
- * after freeing set ptr to NULL for this to work
+ * Checks if a pointer exists, then frees and sets it to NULL
+ * @param ptr address of the pointer to check, free and NULL
  */
-static void	_clean_ptr(void *ptr)
+static void	_clean_ptr(void **ptr)
 {
-	if (!ptr)
+	if (!*ptr)
 		return ;
-	free(ptr);
+	free(*ptr);
+	*ptr = NULL;
 }
 
 /**
  * Frees the general elements and the element allocated for the
- * 	pointer in the general element
+ * 	pointer in the general element, then NULLs the list head
  */
-static void	_clean_element(t_element *elements)
+static void	_clean_element(t_element **elements)
 {
+	t_element	*current;
 	t_element	*next;
 
-	if (!elements)
+	if (!*elements)
 		return ;
-	while (elements)
+	current = *elements;
+	while (current)
 	{
-		next = elements->next;
-		free(elements->element);
-		free(elements);
-		elements = next;
+		next = current->next;
+		free(current->element);
+		free(current);
+		current = next;
 	}
+	*elements = NULL;
 }
