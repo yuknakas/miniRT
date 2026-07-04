@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 16:00:41 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/02 14:29:02 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/04 15:29:02 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,16 @@ static float	_intensity_light(t_minirt *minirt, float poi_to_light[3])
  * @param ray ray from point of intersection to the light source
  * @param gelement gerenal element struct used
  * @return boolean-true if element intecepts with the light, false if not.
+ * 
+ * temp is used to store the hit type for the cylinder object, which is
+ *  used later on to calculate the normal. This is needed as ray_cylinder
+ *  updates the hit_type, which may cause errors later.
  */
 static bool	_intercepts(float poi[3], float ray[3], t_element *gelement)
 {
-	float	dist;
+	float		dist;
+	t_cylinder	*cyl;
+	t_hit_type	temp;
 
 	dist = -1.0F;
 	if (gelement->type == SPHERE)
@@ -80,7 +86,12 @@ static bool	_intercepts(float poi[3], float ray[3], t_element *gelement)
 	else if (gelement->type == PLANE)
 		dist = ray_plane(poi, ray, gelement->element, EPSILON);
 	else if (gelement->type == CYL)
-		dist = ray_cylinder(poi, ray, gelement->element, EPSILON);
+	{
+		cyl = gelement->element;
+		temp = cyl->hit_type;
+		dist = ray_cylinder(poi, ray, cyl, EPSILON);
+		cyl->hit_type = temp;
+	}
 	if (0.0F < dist && dist < 1)
 		return (true);
 	return (false);
