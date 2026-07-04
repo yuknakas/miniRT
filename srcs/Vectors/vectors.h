@@ -19,7 +19,7 @@
 # include <math.h>
 
 # define EPSILON 1.0E-5F
-# define ERR_MALLOC "Error: Memory allocation failed"
+# define ERR_MALLOC "Error: Memory allocation failed\n"
 
 float	dot(float v1[3], float v2[3]);
 void	cross(float v1[3], float v2[3], float target[3]);

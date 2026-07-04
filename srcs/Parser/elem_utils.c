@@ -30,7 +30,7 @@ t_element	*elem_new(void *in_element, t_elem_type in_type)
 	new_elem = malloc(sizeof(t_element));
 	if (!new_elem)
 	{
-		perror(ERR_MALLOC);
+		ft_putstr_fd(ERR_MALLOC, 2);
 		return (NULL);
 	}
 	new_elem->element = in_element;

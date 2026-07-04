@@ -27,7 +27,7 @@ bool	set_spc(t_minirt *minirt, char **info)
 {
 	if (ft_strlen(info[0]) != 2)
 	{
-		perror(ERR_INV_ELEM);
+		ft_putstr_fd(ERR_INV_ELEM, 2);
 		return (1);
 	}
 	if (!ft_strncmp(info[0], "sp", 2))
@@ -36,7 +36,7 @@ bool	set_spc(t_minirt *minirt, char **info)
 		return (_set_plane(minirt, info));
 	if (!ft_strncmp(info[0], "cy", 2))
 		return (_set_cylinder(minirt, info));
-	perror(ERR_INV_ELEM);
+	ft_putstr_fd(ERR_INV_ELEM, 2);
 	return (1);
 }
 
@@ -54,13 +54,13 @@ static bool	_set_sphere(t_minirt *minirt, char **info)
 	
 	if (arr_len(info) < 4)
 	{
-		perror("Error: Insufficient arguments for Sphere");
+		ft_putstr_fd("Error: Insufficient arguments for Sphere\n", 2);
 		return (1);
 	}
 	sphere = malloc(sizeof(t_sphere));
 	if (!sphere)
 	{
-		perror(ERR_MALLOC);
+		ft_putstr_fd(ERR_MALLOC, 2);
 		return (1);
 	}
 	if (ato3f(info[1], sphere->coords)
@@ -87,13 +87,13 @@ static bool	_set_plane(t_minirt *minirt, char **info)
 	
 	if (arr_len(info) < 4)
 	{
-		perror("Error: Insufficient arguments for Plane");
+		ft_putstr_fd("Error: Insufficient arguments for Plane\n", 2);
 		return (1);
 	}
 	plane = malloc(sizeof(t_plane));
 	if (!plane)
 	{
-		perror(ERR_MALLOC);
+		ft_putstr_fd(ERR_MALLOC, 2);
 		return (1);
 	}
 	if (ato3f(info[1], plane->coords)
@@ -102,7 +102,7 @@ static bool	_set_plane(t_minirt *minirt, char **info)
 			|| normalize(plane->normal, plane->normal))
 	{
 		free(plane);
-		perror(ERR_INV_NBR);
+		ft_putstr_fd(ERR_INV_NBR, 2);
 		return (1);
 	}
 	return (elem_append(&minirt->elements, elem_new(plane, PLANE)));
@@ -122,13 +122,13 @@ static bool	_set_cylinder(t_minirt *minirt, char **info)
 	
 	if (arr_len(info) < 6)
 	{
-		perror("Error: Insufficient arguments for Cylinder");
+		ft_putstr_fd("Error: Insufficient arguments for Cylinder\n", 2);
 		return (1);
 	}
 	cyl = malloc(sizeof(t_cylinder));
 	if (!cyl)
 	{
-		perror(ERR_MALLOC);
+		ft_putstr_fd(ERR_MALLOC, 2);
 		return (1);
 	}
 	if (ato3f(info[1], cyl->coords) || ato3f(info[2], cyl->normal)
@@ -136,7 +136,7 @@ static bool	_set_cylinder(t_minirt *minirt, char **info)
 			|| normalize(cyl->normal, cyl->normal))
 	{
 		free(cyl);
-		perror(ERR_INV_NBR);
+		ft_putstr_fd(ERR_INV_NBR, 2);
 		return (1);
 	}
 	cyl->diameter = ft_atof(info[3]);

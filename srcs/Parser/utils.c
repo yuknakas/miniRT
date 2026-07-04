@@ -11,11 +11,14 @@
 /* ************************************************************************** */
 
 #include "parser.h"
+#include <errno.h>
+#include <string.h>
 
 float			ft_atof(char *str);
 int				rt_atoi(char *str);
 void			free_char_dp(char **cdp);
 int				arr_len(char **arr);
+void			print_errno(char *msg);
 
 /**
  * Converts char string to float
@@ -115,4 +118,15 @@ int	arr_len(char **arr)
 	while (arr[len])
 		len++;
 	return (len);
+}
+
+/**
+ * Prints msg followed by strerror(errno) and a newline to stderr
+ * @param msg message to print before the errno string
+ */
+void	print_errno(char *msg)
+{
+	ft_putstr_fd(msg, 2);
+	ft_putstr_fd(strerror(errno), 2);
+	ft_putstr_fd("\n", 2);
 }

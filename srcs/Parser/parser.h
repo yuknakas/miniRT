@@ -46,6 +46,7 @@ t_element		*elem_new(void *in_element, t_elem_type type);
 bool			elem_append(t_element **elem_list, t_element *new_element);
 t_element		*elem_last_id(t_element *elem_list, int *id);
 int				arr_len(char **arr);
+void			print_errno(char *msg);
 
 void			clean_minirt(t_minirt *minirt);
 

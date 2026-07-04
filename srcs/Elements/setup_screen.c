@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "elements.h"
+#include "../../libft/libft.h"
 
 void		setup_screen(t_camera *camera);
 static void	_find_vectors(t_camera *camera);
@@ -31,7 +32,6 @@ void	setup_screen(t_camera *camera)
 	camera->width = 2.0F * FOCAL_DIST * tanf(camera->fov / 2.0F);
 	camera->height = camera->width / ((float)WIDTH / (float)HEIGHT);
 	camera->ratio = camera->width / (float)WIDTH;
-	printf("New: %f, %f\n", camera->width, camera->height);
 	_find_vectors(camera);
 }
 
