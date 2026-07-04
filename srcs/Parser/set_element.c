@@ -162,16 +162,17 @@ static bool	_set_light(t_minirt *minirt, char **info)
 		perror("Error: Insufficient arguments for Light");
 		return (1);
 	}
-	if (arr_len(info) == 3)
-		if (parse_colors(info[3], minirt->light->rgb))
-			return (1);
 	minirt->light = malloc(sizeof(t_light));
 	if (!minirt->light)
 	{
 		perror(ERR_MALLOC);
 		return (1);
 	}
-	if (ato3f(info[1], minirt->light->coords))
+	minirt->light->rgb[0] = 1.0F;
+	minirt->light->rgb[1] = 1.0F;
+	minirt->light->rgb[2] = 1.0F;
+	if (ato3f(info[1], minirt->light->coords)
+		|| (arr_len(info) >= 4 && parse_colors(info[3], minirt->light->rgb)))
 	{
 		free(minirt->light);
 		minirt->light = NULL;
