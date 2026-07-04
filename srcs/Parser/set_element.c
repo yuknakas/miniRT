@@ -58,7 +58,7 @@ static bool	_set_acl(t_minirt *minirt, char **info)
 	{
 		if (minirt->camera)
 		{
-			perror("Error: Cannot have two or more Cameras");
+			ft_putstr_fd("Error: Cannot have two or more Cameras\n", 2);
 			return (1);
 		}
 		return (_set_camera(minirt, info));
@@ -67,12 +67,12 @@ static bool	_set_acl(t_minirt *minirt, char **info)
 	{
 		if (minirt->light)
 		{
-			perror("Error: Cannot have two or more Lights");
+			ft_putstr_fd("Error: Cannot have two or more Lights\n", 2);
 			return (1);
 		}
 		return (_set_light(minirt, info));
 	}
-	perror(ERR_INV_ELEM);
+	ft_putstr_fd(ERR_INV_ELEM, 2);
 	return (1);
 }
 
@@ -88,18 +88,18 @@ static bool	_set_amb_light(t_minirt *minirt, char **info)
 {
 	if (minirt->amb_light)
 	{
-		perror("Error: Cannot have two or more Ambient Lights");
+		ft_putstr_fd("Error: Cannot have two or more Ambient Lights\n", 2);
 		return (1);
 	}
 	if (arr_len(info) < 3)
 	{
-		perror("Error: Insufficient arguments for Ambient Light");
+		ft_putstr_fd("Error: Insufficient arguments for Ambient Light\n", 2);
 		return (1);
 	}
 	minirt->amb_light = malloc(sizeof(t_amb_light));
 	if (!minirt->amb_light)
 	{
-		perror(ERR_MALLOC);
+		ft_putstr_fd(ERR_MALLOC, 2);
 		return (1);
 	}
 	minirt->amb_light->ratio = ft_atof(info[1]);
@@ -124,13 +124,13 @@ static bool	_set_camera(t_minirt *minirt, char **info)
 {
 	if (arr_len(info) < 4)
 	{
-		perror("Error: Insufficient arguments for Camera");
+		ft_putstr_fd("Error: Insufficient arguments for Camera\n", 2);
 		return (1);
 	}
 	minirt->camera = malloc(sizeof(t_camera));
 	if (!minirt->camera)
 	{
-		perror(ERR_MALLOC);
+		ft_putstr_fd(ERR_MALLOC, 2);
 		return (1);
 	}
 	if (ato3f(info[1], minirt->camera->coords)
@@ -140,7 +140,7 @@ static bool	_set_camera(t_minirt *minirt, char **info)
 	{
 		free(minirt->camera);
 		minirt->camera = NULL;
-		perror(ERR_INV_NBR);
+		ft_putstr_fd(ERR_INV_NBR, 2);
 		return (1);
 	}
 	minirt->camera->fov_d = ft_atouc(info[3]);
@@ -159,13 +159,13 @@ static bool	_set_light(t_minirt *minirt, char **info)
 {
 	if (arr_len(info) < 3)
 	{
-		perror("Error: Insufficient arguments for Light");
+		ft_putstr_fd("Error: Insufficient arguments for Light\n", 2);
 		return (1);
 	}
 	minirt->light = malloc(sizeof(t_light));
 	if (!minirt->light)
 	{
-		perror(ERR_MALLOC);
+		ft_putstr_fd(ERR_MALLOC, 2);
 		return (1);
 	}
 	minirt->light->rgb[0] = 1.0F;

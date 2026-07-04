@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		perror("Error\nInvalid input. Usage: ./minirt <infile.rt>");
+		ft_putstr_fd("Error\nInvalid input. Usage: ./minirt <infile.rt>\n", 2);
 		return (1);
 	}
 	if (_init_setup(&minirt, argv[1]))
@@ -46,7 +46,8 @@ static bool	_init_setup(t_minirt *minirt, char *infile)
 {
 	if (setup_display(&minirt->display))
 	{
-		perror("Error\nError with minilibx. Undefined treatment, exiting.");
+		ft_putstr_fd("Error\nError with minilibx. \
+Undefined treatment, exiting.\n", 2);
 		exit(1);
 	}
 	return (parse_input(minirt, infile));

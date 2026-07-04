@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "elements.h"
+#include "../../libft/libft.h"
 
 void		setup_screen(t_camera *camera);
 static void	_find_vectors(t_camera *camera);
@@ -29,20 +30,20 @@ void	setup_screen(t_camera *camera)
 	camera->center[2] = camera->coords[2] + FOCAL_DIST * camera->orientation[2];
 	if (camera->fov_d < 1)
 	{
-		perror("Error\nField of view cannot be less than 1: Setting FOV as 1");
+		ft_putstr_fd("Error\nField of view cannot be less than 1: \
+Setting FOV as 1\n", 2);
 		camera->fov_d = 1;
 	}
 	if (camera->fov_d > 179)
 	{
-		perror("Error\nField of view cannot be greater than 179: \
-					Setting FOV to 179");
+		ft_putstr_fd("Error\nField of view cannot be greater than 179: \
+Setting FOV to 179\n", 2);
 		camera->fov_d = 179;
 	}
 	camera->fov = (float)camera->fov_d / 180.0F * PI;
 	camera->width = 2.0F * FOCAL_DIST * tanf(camera->fov / 2.0F);
 	camera->height = camera->width / ((float)WIDTH / (float)HEIGHT);
 	camera->ratio = camera->width / (float)WIDTH;
-	printf("New: %f, %f\n", camera->width, camera->height);
 	_find_vectors(camera);
 }
 
