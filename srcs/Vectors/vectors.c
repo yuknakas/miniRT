@@ -64,7 +64,7 @@ bool	normalize(float v[3], float target[3])
 {
 	float	len;
 
-	if (v[0] < EPSILON && v[1] < EPSILON && v[2] < EPSILON)
+	if (fabsf(v[0]) < EPSILON && fabsf(v[1]) < EPSILON && fabsf(v[2]) < EPSILON)
 		return (true);
 	len = v_len(v);
 	target[0] /= len;
