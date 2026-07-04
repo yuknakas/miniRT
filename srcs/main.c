@@ -11,9 +11,11 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include <X11/keysym.h>
 
 static bool	_init_setup(t_minirt *minirt, char *infile);
 static int	_close_setup(t_minirt *minirt);
+static int	_key_hook(int keycode, t_minirt *minirt);
 
 int	main(int argc, char **argv)
 {
@@ -28,6 +30,7 @@ int	main(int argc, char **argv)
 		return (1);
 	color_image(&minirt);
 	mlx_hook(minirt.display.window, 17, 0L, _close_setup, &minirt);
+	mlx_hook(minirt.display.window, 2, 1L << 0, _key_hook, &minirt);
 	mlx_loop(minirt.display.mlx);
 	return (0);
 }
@@ -59,5 +62,17 @@ static int	_close_setup(t_minirt *minirt)
 	destroy_display(&minirt->display);
 	clean_minirt(minirt);
 	exit(0);
+	return (0);
+}
+
+/**
+ * KeyPress hook, closes the window on ESC
+ * @param keycode X11 keysym of the pressed key
+ * @param minirt minirt struct to close on ESC
+ */
+static int	_key_hook(int keycode, t_minirt *minirt)
+{
+	if (keycode == XK_Escape)
+		return (_close_setup(minirt));
 	return (0);
 }
