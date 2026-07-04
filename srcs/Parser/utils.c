@@ -87,6 +87,8 @@ void	free_char_dp(char **cdp)
 {
 	int	i;
 
+	if (!cdp)
+		return ;
 	i = 0;
 	while (cdp[i])
 	{
