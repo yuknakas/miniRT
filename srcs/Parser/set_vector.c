@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 10:49:19 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/02 11:19:05 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/04 19:20:46 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ bool	ato3f(char *str, float target[3])
 bool	parse_colors(char *str, float rgb[3])
 {
 	char			**arr;
-	unsigned char	val;
+	int				val;
 	int				i;
 
 	arr = ft_split(str, ',');
@@ -68,7 +68,13 @@ bool	parse_colors(char *str, float rgb[3])
 	i = 0;
 	while (i < 3)
 	{
-		val = ft_atouc(arr[i]);
+		val = rt_atoi(arr[i]);
+		if (val < 0 || 255 < val)
+		{
+		printf("%i\n", val);
+			write(2, ERR_COLOR, ft_strlen(ERR_COLOR));
+			return (true);
+		}
 		rgb[i] = (float)val / 255.0F;
 		i++;
 	}
@@ -86,8 +92,14 @@ bool	parse_colors(char *str, float rgb[3])
 static bool	_is_valid_3p(char **arr)
 {
 	if (arr == NULL)
+	{
+		write(2, ERR_MALLOC, ft_strlen(ERR_MALLOC));
 		return (false);
-	if (arr_len(arr) < 3)
+	}
+	if (arr_len(arr) != 3)
+	{
+		write(2, ERR_3PTR, ft_strlen(ERR_3PTR));
 		return (false);
+	}
 	return (true);
 }

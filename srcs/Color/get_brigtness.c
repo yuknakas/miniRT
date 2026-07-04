@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 16:00:41 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/04 15:29:02 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/04 19:01:32 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ float	get_brightness(t_minirt *minirt, t_element *gelement)
 	brightness = minirt->amb_light->ratio;
 	v_subtract(minirt->light->coords, minirt->pixel.poi, poi_to_light);
 	intensity = _intensity_light(minirt, poi_to_light);
-	if (intensity < 0.0F)
-		return (brightness);
 	diffuse_frac = _get_frac(minirt, gelement, poi_to_light);
-	if (diffuse_frac < 0.0F)
+	if (intensity < 0.0F || diffuse_frac < 0.0F)
 		return (brightness);
 	return (brightness + intensity * diffuse_frac);
 }

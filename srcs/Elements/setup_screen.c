@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 10:55:46 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/04 18:03:08 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/04 18:56:35 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,6 @@ void	setup_screen(t_camera *camera)
 	camera->center[0] = camera->coords[0] + FOCAL_DIST * camera->orientation[0];
 	camera->center[1] = camera->coords[1] + FOCAL_DIST * camera->orientation[1];
 	camera->center[2] = camera->coords[2] + FOCAL_DIST * camera->orientation[2];
-	if (camera->fov_d < 1)
-	{
-		ft_putstr_fd("Error\nField of view cannot be less than 1: \
-Setting FOV as 1\n", 2);
-		camera->fov_d = 1;
-	}
-	if (camera->fov_d > 179)
-	{
-		ft_putstr_fd("Error\nField of view cannot be greater than 179: \
-Setting FOV to 179\n", 2);
-		camera->fov_d = 179;
-	}
 	camera->fov = (float)camera->fov_d / 180.0F * PI;
 	camera->width = 2.0F * FOCAL_DIST * tanf(camera->fov / 2.0F);
 	camera->height = camera->width / ((float)WIDTH / (float)HEIGHT);

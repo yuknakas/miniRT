@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 15:06:27 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/07/01 12:31:26 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/04 19:27:54 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <string.h>
 
 float			ft_atof(char *str);
-unsigned char	ft_atouc(char *str);
+int				rt_atoi(char *str);
 void			free_char_dp(char **cdp);
 int				arr_len(char **arr);
 void			print_errno(char *msg);
@@ -58,28 +58,35 @@ float	ft_atof(char *str)
 }
 
 /**
- * Converts char string to an unsigned int value
- * @param str pointer to string
- * @return unsigned char value of string
+ * converts from string to int value with additional error
+ *  handleing from atoi
+ * @param str char string to be converted to a number
+ * @return int value, -1 if error
  * 
- * Handles string until non-numeric character. If error returns 0.
- *  Does not handle +- since format is unsigned char.
+ * Error Cases: negative (-1), multiple positives (++1),
+ *  trailing letters (123a), large number (INT_MAX < )
  */
-unsigned char	ft_atouc(char *str)
+int	rt_atoi(char *str)
 {
-	size_t	i;
-	int		nbr;
+	int	result;
 
-	i = 0;
-	nbr = 0;
-	while (ft_isdigit(str[i]))
+	result = 0;
+	if (*str == '-')
+		return (-1);
+	if (*str == '+')
+		str++;
+	if (!ft_isdigit(*str))
+		return (-1);
+	while (ft_isdigit(*str))
 	{
-		if ((255 - (str[i] - '0')) / 10 < nbr)
-			return (255);
-		nbr = nbr * 10 + (str[i] - '0');
-		i++;
+		if ((result > (INT_MAX - (*str - '0')) / 10))
+				return (-1);
+		result = result * 10 + (*str - '0');
+		str++;
 	}
-	return ((unsigned char)nbr);
+	if (*str != '\0' && *str != '\n')
+		return (-1);
+	return (result);
 }
 
 /**

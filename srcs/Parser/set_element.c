@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:37:34 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/07/02 12:48:53 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/04 19:17:55 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ static bool	_set_amb_light(t_minirt *minirt, char **info)
 		ft_putstr_fd(ERR_MALLOC, 2);
 		return (1);
 	}
-	minirt->amb_light->ratio = ft_atof(info[1]);
-	if (parse_colors(info[2], minirt->amb_light->rgb))
+	if (parse_brigtness(&minirt->amb_light->ratio, info[1]) || 
+		parse_colors(info[2], minirt->amb_light->rgb))
 	{
 		free(minirt->amb_light);
 		minirt->amb_light = NULL;
@@ -143,8 +143,7 @@ static bool	_set_camera(t_minirt *minirt, char **info)
 		ft_putstr_fd(ERR_INV_NBR, 2);
 		return (1);
 	}
-	minirt->camera->fov_d = ft_atouc(info[3]);
-	return (0);
+	return (set_fov_d(&minirt->camera->fov_d, info[3]));
 }
 
 /**
@@ -172,12 +171,12 @@ static bool	_set_light(t_minirt *minirt, char **info)
 	minirt->light->rgb[1] = 1.0F;
 	minirt->light->rgb[2] = 1.0F;
 	if (ato3f(info[1], minirt->light->coords)
-		|| (arr_len(info) >= 4 && parse_colors(info[3], minirt->light->rgb)))
+		|| (arr_len(info) >= 4 && parse_colors(info[3], minirt->light->rgb))
+		|| parse_brigtness(&minirt->light->brightness, info[2]))
 	{
 		free(minirt->light);
 		minirt->light = NULL;
 		return (1);
 	}
-	minirt->light->brightness = ft_atof(info[2]);
 	return (0);
 }
