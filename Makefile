@@ -19,7 +19,7 @@ RMFLAG	=	rm -rf
 
 SRC		=	srcs/get_closest.c srcs/main.c srcs/set_pixel.c
 COLORS	=	srcs/Color/get_brigtness.c srcs/Color/get_color.c \
-			srcs/Color/get_normal.c srcs/Color/get_rgb.c
+			srcs/Color/get_normal.c
 DISPLAY	=	srcs/Display/clean_display.c srcs/Display/setup_display.c
 ELEMENT	=	srcs/Elements/cylinder.c srcs/Elements/cylinder_end.c \
 			srcs/Elements/plane.c srcs/Elements/ray_to_pixel.c \
