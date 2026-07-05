@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 10:49:19 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/05 11:44:33 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/05 12:29:57 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	ato3f(char *str, float target[3])
 	char	**arr;
 	int		i;
 
-	arr = ft_split(str, ',');
+	arr = split_vector(str, ',');
 	if (!_is_valid_3p(arr))
 	{
 		free_char_dp(arr);
@@ -63,7 +63,7 @@ bool	parse_colors(char *str, float rgb[3])
 	int				val;
 	int				i;
 
-	arr = ft_split(str, ',');
+	arr = split_vector(str, ',');
 	if (!_is_valid_3p(arr))
 	{
 		free_char_dp(arr);
@@ -94,15 +94,19 @@ bool	parse_colors(char *str, float rgb[3])
  */
 static bool	_is_valid_3p(char **arr)
 {
+	int	i;
+	
 	if (arr == NULL)
 	{
 		write(2, ERR_MALLOC, ft_strlen(ERR_MALLOC));
 		return (false);
 	}
-	if (arr_len(arr) != 3)
+	if (arr_len(arr) != 3 || ft_strlen(arr[0])
+			|| ft_strlen(arr[1]) || ft_strlen(arr[2]))
 	{
 		write(2, ERR_3PTR, ft_strlen(ERR_3PTR));
 		return (false);
 	}
+	i = 0;
 	return (true);
 }

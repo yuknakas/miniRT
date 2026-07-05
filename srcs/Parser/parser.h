@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:26:08 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/07/05 11:07:31 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/05 12:21:38 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ bool			parse_dist(float *dist, char *str);
 bool			parse_brigtness(float *brightness, char *str);
 bool			ato3f(char *str, float target[3]);
 bool			parse_colors(char *str, float rgb[3]);
+char			**split_vector(char const *str, char c);
 void			free_char_dp(char **cdp);
 
 t_element		*elem_new(void *in_element, t_elem_type type);
