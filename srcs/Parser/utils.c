@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 15:06:27 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/07/05 11:10:14 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/05 11:43:16 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <string.h>
 
 bool		ft_atopf(char *str, float *nbr);
-static bool	_set_pos(int *pos, char *str, size_t *i);
+static bool	_set_pos(int *pos, char *str, size_t *i, float *nbr);
 int			rt_atoi(char *str);
 static bool	_err_trail(void);
 void		print_errno(char *msg);
@@ -35,8 +35,7 @@ bool	ft_atopf(char *str, float *nbr)
 	int		decimal;
 	int		pos;
 
-	*nbr = 0.0F;
-	if (_set_pos(&pos, str, &i))
+	if (_set_pos(&pos, str, &i, nbr))
 		return (true);
 	while (ft_isdigit(str[i]))
 	{
@@ -46,11 +45,14 @@ bool	ft_atopf(char *str, float *nbr)
 	if (str[i] != '.' && str[i] != '\0' && str[i] != '\n')
 		return (_err_trail());
 	if (str[i] != '.')
+	{
+		*nbr *= pos;
 		return (false);
+	}
 	decimal = 1;
 	while (ft_isdigit(str[++i]))
 		*nbr += (str[i] - '0') / powf(10.0F, (float)decimal);
-	*nbr += pos;
+	*nbr *= pos;
 	if (str[i] != '\0' && str[i] != '\n')
 		return (_err_trail());
 	return (false);
@@ -62,12 +64,14 @@ bool	ft_atopf(char *str, float *nbr)
  * @param pos pointer to int holding position (+- of the number)
  * @param str char string to handle
  * @param i float to size_t indexer for string
+ * @param nbr float pointer to nbr, which to be initialized here
  * @return boolean-true if error, false if all is good.
  */
-static bool	_set_pos(int *pos, char *str, size_t *i)
+static bool	_set_pos(int *pos, char *str, size_t *i, float *nbr)
 {
 	*i = 0;
-	*pos = 0;
+	*pos = 1;
+	*nbr = 0.0F;
 	if (str[*i] == '-' || str[*i] == '+')
 	{
 		if (str[*i] == '-')
@@ -96,9 +100,9 @@ int	rt_atoi(char *str)
 	int	result;
 
 	result = 0;
-	if (*str == '-')
+	if (*str == '-' && rt_atoi(str + 1) != 0)
 		return (-1);
-	if (*str == '+')
+	if (*str == '+' || *str == '-')
 		str++;
 	if (!ft_isdigit(*str))
 	{

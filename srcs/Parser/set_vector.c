@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 10:49:19 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/05 10:48:45 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/05 11:44:33 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ bool	parse_colors(char *str, float rgb[3])
 		val = rt_atoi(arr[i]);
 		if (val < 0 || 255 < val)
 		{
-		printf("%i\n", val);
 			write(2, ERR_COLOR, ft_strlen(ERR_COLOR));
 			return (true);
 		}

@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/04 19:06:15 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/05 11:08:58 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/05 11:50:17 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ bool	parse_dist(float *dist, char *str)
 {
 	if (ft_atopf(str, dist))
 		return (true);
-	if (*dist < 0.0F)
+	if (*dist < EPSILON)
 	{
 		write(2, ERR_DIST, ft_strlen(ERR_DIST));
 		return (true);
