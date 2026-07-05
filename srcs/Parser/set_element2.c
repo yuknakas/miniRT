@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 13:41:07 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/07/03 15:57:21 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/05 11:14:10 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ static bool	_set_sphere(t_minirt *minirt, char **info)
 		return (1);
 	}
 	if (ato3f(info[1], sphere->coords)
+			|| parse_dist(&sphere->diameter, info[2])
 			|| parse_colors(info[3], sphere->rgb))
 	{
 		free(sphere);
 		return (1);
 	}
-	sphere->diameter = ft_atof(info[2]);
 	return (elem_append(&minirt->elements, elem_new(sphere, SPHERE)));
 }
 
@@ -132,14 +132,14 @@ static bool	_set_cylinder(t_minirt *minirt, char **info)
 		return (1);
 	}
 	if (ato3f(info[1], cyl->coords) || ato3f(info[2], cyl->normal)
-			|| parse_colors(info[5], cyl->rgb)
+			|| parse_dist(&cyl->diameter, info[3])
+			|| parse_dist(&cyl->height, info[4])
+ 			|| parse_colors(info[5], cyl->rgb)
 			|| normalize(cyl->normal, cyl->normal))
 	{
 		free(cyl);
 		ft_putstr_fd(ERR_INV_NBR, 2);
 		return (1);
 	}
-	cyl->diameter = ft_atof(info[3]);
-	cyl->height = ft_atof(info[4]);
 	return (elem_append(&minirt->elements, elem_new(cyl, CYL)));
 }

@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 15:06:27 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/07/04 19:27:54 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/05 11:10:14 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,72 @@
 #include <errno.h>
 #include <string.h>
 
-float			ft_atof(char *str);
-int				rt_atoi(char *str);
-void			free_char_dp(char **cdp);
-int				arr_len(char **arr);
-void			print_errno(char *msg);
+bool		ft_atopf(char *str, float *nbr);
+static bool	_set_pos(int *pos, char *str, size_t *i);
+int			rt_atoi(char *str);
+static bool	_err_trail(void);
+void		print_errno(char *msg);
 
 /**
  * Converts char string to float
  * @param str pointer to string
- * @return float value of string
+ * @param nbr pointer to float to store float value
+ * @return boolean-true if error, false if all good
  * 
  * str is considered until first non-numeric character or second '.'
  *  If error, returns 0.0F. Deals with all +- before number
  */
-float	ft_atof(char *str)
+bool	ft_atopf(char *str, float *nbr)
 {
 	size_t	i;
 	int		decimal;
 	int		pos;
-	float	nbr;
 
-	i = 0;
-	nbr = 0.0F;
-	pos = 1;
-	while (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			pos *= -1;
-		i++;
-	}
+	*nbr = 0.0F;
+	if (_set_pos(&pos, str, &i))
+		return (true);
 	while (ft_isdigit(str[i]))
 	{
-		nbr = nbr * 10 + (str[i] - '0');
+		*nbr = *nbr * 10 + (str[i] - '0');
 		i++;
 	}
+	if (str[i] != '.' && str[i] != '\0' && str[i] != '\n')
+		return (_err_trail());
 	if (str[i] != '.')
-		return (nbr * pos);
+		return (false);
 	decimal = 1;
 	while (ft_isdigit(str[++i]))
-		nbr += (str[i] - '0') / powf(10.0F, (float)decimal);
-	return (nbr * pos);
+		*nbr += (str[i] - '0') / powf(10.0F, (float)decimal);
+	*nbr += pos;
+	if (str[i] != '\0' && str[i] != '\n')
+		return (_err_trail());
+	return (false);
+}
+
+/**
+ * handles +/- in front of a float number, and tests if there is
+ *  any additional letters in front of number
+ * @param pos pointer to int holding position (+- of the number)
+ * @param str char string to handle
+ * @param i float to size_t indexer for string
+ * @return boolean-true if error, false if all is good.
+ */
+static bool	_set_pos(int *pos, char *str, size_t *i)
+{
+	*i = 0;
+	*pos = 0;
+	if (str[*i] == '-' || str[*i] == '+')
+	{
+		if (str[*i] == '-')
+			*pos = -1;
+		*i = 1;
+	}
+	if (!ft_isdigit(str[*i]))
+	{
+		write(2, ERR_NB_HEAD, strlen(ERR_NB_HEAD));
+		return (true);
+	}
+	return (false);
 }
 
 /**
@@ -76,7 +101,10 @@ int	rt_atoi(char *str)
 	if (*str == '+')
 		str++;
 	if (!ft_isdigit(*str))
+	{
+		write(2, ERR_NB_HEAD, strlen(ERR_NB_HEAD));
 		return (-1);
+	}
 	while (ft_isdigit(*str))
 	{
 		if ((result > (INT_MAX - (*str - '0')) / 10))
@@ -85,39 +113,20 @@ int	rt_atoi(char *str)
 		str++;
 	}
 	if (*str != '\0' && *str != '\n')
+	{
+		_err_trail();
 		return (-1);
+	}
 	return (result);
 }
 
 /**
- * Frees a char double pointer
- * @param cdp char double pointer to free
+ * Pure helper, returns true while displaying error message
  */
-void	free_char_dp(char **cdp)
+static bool	_err_trail(void)
 {
-	int	i;
-
-	if (!cdp)
-		return ;
-	i = 0;
-	while (cdp[i])
-	{
-		free(cdp[i]);
-		i++;
-	}
-	free(cdp);
-}
-
-int	arr_len(char **arr)
-{
-	int	len;
-
-	if (!arr)
-		return (0);
-	len = 0;
-	while (arr[len])
-		len++;
-	return (len);
+	write(2, ERR_NB_TRAIL, strlen(ERR_NB_TRAIL));
+	return (true);
 }
 
 /**

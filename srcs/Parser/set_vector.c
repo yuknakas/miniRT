@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 10:49:19 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/04 19:20:46 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/05 10:48:45 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,11 @@ bool	ato3f(char *str, float target[3])
 	i = 0;
 	while (i < 3)
 	{
-		target[i] = ft_atof(arr[i]);
+		if (ft_atopf(arr[i], &target[i]))
+		{
+			free_char_dp(arr);
+			return (true);
+		}
 		i++;
 	}
 	free_char_dp(arr);
