@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 20:40:36 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/04 18:02:38 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 13:40:12 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,13 @@ typedef struct s_cylinder
 // ==================== ENUM ELEMENT_TYPE ====================================
 typedef enum s_elem_type
 {
+	AMB,
+	CAM,
+	LIT,
 	SPHERE,
 	PLANE,
-	CYL
+	CYL,
+	NO_TYPE
 }   t_elem_type;
 
 // ==================== ELEMENT STRUCT =======================================

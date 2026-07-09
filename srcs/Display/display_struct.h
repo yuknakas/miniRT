@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   display_struct.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/29 07:04:17 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/09 13:48:12 by yuknakas         ###   ########.fr       */
+/*   Created: 2026/07/09 10:59:17 by yuknakas          #+#    #+#             */
+/*   Updated: 2026/07/09 11:01:31 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
+#ifndef DISPLAY_STRUCT_H
+# define DISPLAY_STRUCT_H
 
 # include "../Elements/elements.h"
-# include "../minirt_struct.h"
-# include <limits.h>
 
-int		get_color(t_minirt *minirt, t_element *close_elem);
-void	get_normal(float target[3], t_pixel *pixel, t_element *gelement);
-float	get_brightness(t_minirt *minirt, t_element *gelement);
-int		get_color(t_minirt *minirt, t_element *close_elem);
+// =========================== Struct Display ================================
+typedef struct s_display
+{
+	void		*mlx;
+	void		*window;
+	void		*image;
+	void		*ptr_to_image;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
+	void		*element;
+	t_elem_type	type;
+}	t_display;
 
 #endif
