@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 11:06:48 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/09 14:35:58 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 16:37:43 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ static void	_redirect_cam(int x, int y, t_minirt *minirt);
 static void	_zoom_in(t_minirt *minirt);
 static void	_zoom_out(t_minirt *minirt);
 
-int	rt_mouse_hook(int mouse_code, int x, int y, t_minirt *minirt)
+int	rt_mouse_hook(int mouse_code, int x, int y, void *arg)
 {
+	t_minirt	*minirt;
+
+	minirt = arg;
 	if (mouse_code == MOUSE_LEFT)
 		_select_elem(x, y, minirt);
 	else if (mouse_code == MOUSE_RIGHT)
@@ -57,7 +60,7 @@ static void	_redirect_cam(int x, int y, t_minirt *minirt)
 	color_image(minirt);
 }
 
-static void	_zoom_in(t_minirt *minirt)
+static void	_zoom_out(t_minirt *minirt)
 {
 	minirt->camera->fov_d += 5;
 	if (179 < minirt->camera->fov_d)
@@ -65,10 +68,11 @@ static void	_zoom_in(t_minirt *minirt)
 	color_image(minirt);
 }
 
-static void	_zoom_out(t_minirt *minirt)
+static void	_zoom_in(t_minirt *minirt)
 {
-	minirt->camera->fov_d -= 5;
-	if (minirt->camera->fov_d < 1)
+	if (minirt->camera->fov_d < 5)
 		minirt->camera->fov_d = 1;
+	else
+		minirt->camera->fov_d -= 5;
 	color_image(minirt);
 }

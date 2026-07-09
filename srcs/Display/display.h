@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 14:31:38 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/09 14:35:36 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 16:14:44 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,9 @@ void		destroy_display(t_display *display);
 t_element	*get_close_elem(t_minirt *minirt);
 void		color_image(t_minirt *minirt);
 int			close_setup(t_minirt *minirt);
-int			rt_key_hook(int keycode, t_minirt *minirt);
 int			key_move(int keycode, t_minirt *minirt);
-int			rt_mouse_hook(int mouse_code, int x, int y, t_minirt *minirt);
-int			rt_key_hook(int keycode, t_minirt *minirt);
+int			rt_mouse_hook(int mouse_code, int x, int y, void *arg);
+int			rt_key_hook(int keycode, void *arg);
 
 // MOUSECODES
 # define MOUSE_LEFT 1

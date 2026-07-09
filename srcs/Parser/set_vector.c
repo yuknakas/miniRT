@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 10:49:19 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/09 11:04:01 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 16:31:14 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ static bool	_is_valid_3p(char **arr)
 		ft_putstr_fd(ERR_MALLOC, 2);
 		return (false);
 	}
-	if (arr_len(arr) != 3 || ft_strlen(arr[0])
-			|| ft_strlen(arr[1]) || ft_strlen(arr[2]))
+	if (arr_len(arr) != 3 || !ft_strlen(arr[0])
+			|| !ft_strlen(arr[1]) || !ft_strlen(arr[2]))
 	{
 		ft_putstr_fd(ERR_3PTR, 2);
 		return (false);
