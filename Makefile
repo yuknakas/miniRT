@@ -27,7 +27,8 @@ ELEMENT	=	srcs/Elements/cylinder.c srcs/Elements/cylinder_end.c \
 			srcs/Elements/setup_screen.c srcs/Elements/sphere.c
 PARSER	=	srcs/Parser/clean.c srcs/Parser/elem_utils.c srcs/Parser/parser.c \
 			srcs/Parser/set_element.c srcs/Parser/set_element2.c \
-			srcs/Parser/set_vector.c srcs/Parser/utils.c srcs/Parser/utils2.c
+			srcs/Parser/set_vector.c srcs/Parser/utils.c srcs/Parser/utils2.c \
+			srcs/Parser/split_vector.c
 VECTORS	=	srcs/Vectors/vectors.c srcs/Vectors/vectors2.c
 
 SRCS	=	$(SRC) $(COLORS) $(DISPLAY) $(ELEMENT) $(PARSER) $(VECTORS)

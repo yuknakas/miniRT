@@ -29,7 +29,7 @@ bool	ato3f(char *str, float target[3])
 	char	**arr;
 	int		i;
 
-	arr = ft_split(str, ',');
+	arr = split_vector(str, ',');
 	if (!_is_valid_3p(arr))
 	{
 		free_char_dp(arr);
@@ -38,7 +38,11 @@ bool	ato3f(char *str, float target[3])
 	i = 0;
 	while (i < 3)
 	{
-		target[i] = ft_atof(arr[i]);
+		if (ft_atopf(arr[i], &target[i]))
+		{
+			free_char_dp(arr);
+			return (true);
+		}
 		i++;
 	}
 	free_char_dp(arr);
@@ -59,7 +63,7 @@ bool	parse_colors(char *str, float rgb[3])
 	int				val;
 	int				i;
 
-	arr = ft_split(str, ',');
+	arr = split_vector(str, ',');
 	if (!_is_valid_3p(arr))
 	{
 		free_char_dp(arr);
@@ -90,15 +94,19 @@ bool	parse_colors(char *str, float rgb[3])
  */
 static bool	_is_valid_3p(char **arr)
 {
+	int	i;
+	
 	if (arr == NULL)
 	{
 		ft_putstr_fd(ERR_MALLOC, 2);
 		return (false);
 	}
-	if (arr_len(arr) != 3)
+	if (arr_len(arr) != 3 || ft_strlen(arr[0])
+			|| ft_strlen(arr[1]) || ft_strlen(arr[2]))
 	{
 		ft_putstr_fd(ERR_3PTR, 2);
 		return (false);
 	}
+	i = 0;
 	return (true);
 }

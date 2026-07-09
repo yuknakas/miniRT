@@ -43,13 +43,15 @@ int	main(int argc, char **argv)
  */
 static bool	_init_setup(t_minirt *minirt, char *infile)
 {
+	if (parse_input(minirt, infile))
+		return (1);
 	if (setup_display(&minirt->display))
 	{
 		ft_putstr_fd("Error\nError with minilibx. \
 Undefined treatment, exiting.\n", 2);
 		exit(1);
 	}
-	return (parse_input(minirt, infile));
+	return (0);
 }
 
 /**
