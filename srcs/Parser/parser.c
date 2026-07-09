@@ -125,7 +125,10 @@ static bool	_readline_loop(t_minirt *minirt, int fd)
 static bool	_is_invalid(t_minirt *minirt)
 {
 	if (!minirt->amb_light || !minirt->camera || !minirt->light)
+	{
+		ft_putstr_fd("Error\nMissing required element (A/C/L)\n", 2);
 		return (true);
+	}
 	if (minirt->amb_light->ratio < 0.0F)
 		minirt->amb_light->ratio = 0.0F;
 	if (minirt->amb_light->ratio > 1.0F)
