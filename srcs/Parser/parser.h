@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:26:08 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/07/05 12:21:38 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 17:45:03 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void			clean_minirt(t_minirt *minirt);
 # define ERR_NULL_IN "Error\nInfile cannot be NULL\n"
 # define ERR_FILETYPE "Error\nWrong infile type. Must be .rt\n"
 # define ERR_INV_ELEM "Error\nInvalid element identifier found\n"
-# define ERR_INV_NBR "Error\n Invalid vector (0 vector or not CSV type)\n"
+# define ERR_INV_NBR "Error\nInvalid vector (0 vector or not CSV type)\n"
 
 # define ERR_COLOR "Error\nRGB values must be an int between 0 ~ 255.\n"
 # define ERR_3PTR "Error\nRGB/Vectors must be 3 values with commas between\n"
@@ -64,5 +64,7 @@ void			clean_minirt(t_minirt *minirt);
 # define ERR_DIST "Error\nLength cannot be equal or less than 0\n"
 # define ERR_NB_HEAD "Error\nCharacter ahead of argument expecting number\n"
 # define ERR_NB_TRAIL "Error\nCharacter trailing of argument expecting number\n"
+
+# define ERR_FLOAT_LEN "Error\nLength of Float is too long\n"
 
 #endif

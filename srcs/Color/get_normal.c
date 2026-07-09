@@ -6,14 +6,14 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 07:05:30 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/09 16:10:15 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 17:14:35 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
 
-void		get_normal(float target[3], t_pixel *pixel, t_element *gelement);
-static void	_normal_sphere(float target[3], float poi[3], t_sphere *sphere);
+void		get_normal(float target[3], t_pixel *pixel, t_element *gelement, t_camera *camera);
+static void	_normal_sphere(float target[3], float poi[3], t_sphere *sphere, t_camera *camera);
 static void	_normal_plane(float target[3], float ray[3], t_plane *plane);
 static void	_normal_cylinder_side(float t[3], float poi[3], t_cylinder *cyl);
 static void _normal_cylinder_end(float t[3], float ray[3], t_cylinder *cyl);
@@ -24,12 +24,12 @@ static void _normal_cylinder_end(float t[3], float ray[3], t_cylinder *cyl);
  * @param pixel pixel struct holding relavant information
  * @param gelement general element struct
  */
-void	get_normal(float target[3], t_pixel *pixel, t_element *gelement)
+void	get_normal(float target[3], t_pixel *pixel, t_element *gelement, t_camera *camera)
 {
 	t_cylinder *cyl;
 
 	if (gelement->type == SPHERE)
-		_normal_sphere(target, pixel->poi, gelement->element);
+		_normal_sphere(target, pixel->poi, gelement->element, camera);
 	else if (gelement->type == PLANE)
 		_normal_plane(target, pixel->ray, gelement->element);
 	else if (gelement->type == CYL)
@@ -54,15 +54,26 @@ void	get_normal(float target[3], t_pixel *pixel, t_element *gelement)
  * normal for a point on the surface of sphere can be calculated as
  *  P - O
  */
-static void	_normal_sphere(float target[3], float poi[3], t_sphere *sphere)
+static void	_normal_sphere(float target[3], float poi[3], t_sphere *sphere, t_camera *camera)
 {
-	int	i;
+	int		i;
+	float	center_to_cam[3];
 
 	i = 0;
 	while (i < 3)
 	{
 		target[i] = poi[i] - sphere->coords[i];
 		i++;
+	}
+	v_subtract(camera->coords, sphere->coords, center_to_cam);
+	if (v_len(center_to_cam) <= sphere->diameter / 2)
+	{
+		i = 0;
+		while (i < 3)
+		{
+			target[i] *= -1.0F;
+			i++;
+		}
 	}
 }
 

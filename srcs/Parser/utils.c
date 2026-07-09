@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 15:06:27 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/07/05 11:43:16 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 17:44:49 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ bool	ft_atopf(char *str, float *nbr)
 		return (_err_trail());
 	if (str[i] != '.')
 	{
-		*nbr *= pos;
+		*nbr *= (float)pos;
 		return (false);
 	}
 	decimal = 1;
 	while (ft_isdigit(str[++i]))
 		*nbr += (str[i] - '0') / powf(10.0F, (float)decimal);
-	*nbr *= pos;
+	*nbr *= (float)pos;
 	if (str[i] != '\0' && str[i] != '\n')
 		return (_err_trail());
 	return (false);
@@ -69,9 +69,19 @@ bool	ft_atopf(char *str, float *nbr)
  */
 static bool	_set_pos(int *pos, char *str, size_t *i, float *nbr)
 {
+	char	*addr;
+
 	*i = 0;
 	*pos = 1;
 	*nbr = 0.0F;
+	addr = ft_strchr(str, '.');
+	if (!addr)
+		addr = ft_strlen(str) + str;
+	if (addr - str > 18)
+	{
+		ft_putstr_fd(ERR_FLOAT_LEN, 2);
+		return (true);
+	}
 	if (str[*i] == '-' || str[*i] == '+')
 	{
 		if (str[*i] == '-')

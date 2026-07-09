@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 16:00:41 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/09 14:29:38 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 17:12:05 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ static float	_get_frac(t_minirt *minirt, t_element *gelement, float ray[3])
 	float	surface_normal[3];
 	float	diffuse_frac;
 
-	get_normal(surface_normal, &minirt->pixel, gelement);
+	get_normal(surface_normal, &minirt->pixel, gelement, minirt->camera);
 	diffuse_frac = dot(surface_normal, ray)
 			/ (v_len(surface_normal) * v_len(ray));
 	return (diffuse_frac);
