@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 09:55:22 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/06/21 21:22:15 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 13:53:37 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ bool	normalize(float v[3], float target[3])
 	if (fabsf(v[0]) < EPSILON && fabsf(v[1]) < EPSILON && fabsf(v[2]) < EPSILON)
 		return (true);
 	len = v_len(v);
-	target[0] /= len;
-	target[1] /= len;
-	target[2] /= len;
+	target[0] = v[0] / len;
+	target[1] = v[1] / len;
+	target[2] = v[2] / len;
 	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 14:35:53 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/01 12:26:38 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 13:40:20 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ bool	setup_display(t_display *display)
 		ft_putstr_fd("Error: Failed to setup window\n", 2);
 		return (true);
 	}
+	display->element = NULL;
+	display->type = NO_TYPE;
 	return (false);
 }
 

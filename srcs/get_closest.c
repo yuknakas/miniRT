@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 20:34:32 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/02 11:44:32 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 14:35:11 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static void		_set_poi(t_minirt *minirt, float dist, float poi[3]);
  */
 t_element	*get_close_elem(t_minirt *minirt)
 {
-	t_pixel		*pixel;
 	t_element	*gelement;
 	t_element	*close_elem;
 	float		dist_min;
 	float		dist;
+	t_pixel		*pixel;
 
 	pixel = &minirt->pixel;
 	pixel->min = ray_to_pixel(minirt->camera, pixel->x, pixel->y, pixel->ray);
