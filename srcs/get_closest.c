@@ -6,13 +6,13 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 20:34:32 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/02 11:44:32 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 11:14:36 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_element		*get_close_elem(t_minirt *minirt);
+t_element		*get_close_elem(t_minirt *minirt, t_pixel *pixel);
 static float	_get_dist(t_minirt *minirt, t_element *gelement);
 static void		_set_poi(t_minirt *minirt, float dist, float poi[3]);
 
@@ -21,15 +21,13 @@ static void		_set_poi(t_minirt *minirt, float dist, float poi[3]);
  *  general element structure for it while setting variables in pixel struct
  * @param minirt minirt struct holding all relarvant info
  */
-t_element	*get_close_elem(t_minirt *minirt)
+t_element	*get_close_elem(t_minirt *minirt, t_pixel *pixel)
 {
-	t_pixel		*pixel;
 	t_element	*gelement;
 	t_element	*close_elem;
 	float		dist_min;
 	float		dist;
 
-	pixel = &minirt->pixel;
 	pixel->min = ray_to_pixel(minirt->camera, pixel->x, pixel->y, pixel->ray);
 	dist_min = -1.0F;
 	close_elem = NULL;

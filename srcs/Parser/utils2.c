@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/04 19:06:15 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/04 19:16:23 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 11:04:38 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	set_fov_d(unsigned char *fov_d, char *str)
 	val = rt_atoi(str);
 	if (val < 1 || 179 < val)
 	{
-		write(2, ERR_FOV, ft_strlen(ERR_FOV));
+		ft_putstr_fd(ERR_FOV, 2);
 		return (true);
 	}
 	*fov_d = (char)val;
@@ -52,7 +52,7 @@ bool	parse_brigtness(float *brightness, char *str)
 	val = ft_atof(str);
 	if (val < 0.0F || 1.0F < val)
 	{
-		write(2, ERR_BRIGHT, ft_strlen(ERR_BRIGHT));
+		ft_putstr_fd(ERR_BRIGHT, 2);
 		return (true);
 	}
 	*brightness = val;

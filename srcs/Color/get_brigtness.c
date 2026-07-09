@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 16:00:41 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/04 19:01:32 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 13:59:01 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ static float	_intensity_light(t_minirt *minirt, float poi_to_light[3])
 			return (-1.0F);
 		gelement = gelement->next;
 	}
-	dist = v_len(poi_to_light) / 100;
-	return (minirt->light->brightness / (1 + 4 * PI * dist * dist));
+	dist = v_len(poi_to_light) / 100.0F;
+	return (minirt->light->brightness / (1.0F + 4.0F * PI * dist * dist));
 }
 
 /**
@@ -77,20 +77,22 @@ static bool	_intercepts(float poi[3], float ray[3], t_element *gelement)
 	float		dist;
 	t_cylinder	*cyl;
 	t_hit_type	temp;
+	float		unitv[3];
 
 	dist = -1.0F;
+	normalize(ray, unitv);
 	if (gelement->type == SPHERE)
-		dist = ray_sphere(poi, ray, gelement->element, EPSILON);
+		dist = ray_sphere(poi, unitv, gelement->element, 100 * EPSILON);
 	else if (gelement->type == PLANE)
 		dist = ray_plane(poi, ray, gelement->element, EPSILON);
 	else if (gelement->type == CYL)
 	{
 		cyl = gelement->element;
 		temp = cyl->hit_type;
-		dist = ray_cylinder(poi, ray, cyl, EPSILON);
+		dist = ray_cylinder(poi, ray, cyl, 100 * EPSILON);
 		cyl->hit_type = temp;
 	}
-	if (0.0F < dist && dist < 1)
+	if (0.0 < dist && dist < v_len(ray))
 		return (true);
 	return (false);
 }

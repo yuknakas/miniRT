@@ -6,16 +6,14 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/01 09:38:04 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/03 15:22:59 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 12:23:38 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include <X11/keysym.h>
 
 static bool	_init_setup(t_minirt *minirt, char *infile);
-static int	_close_setup(t_minirt *minirt);
-static int	_key_hook(int keycode, t_minirt *minirt);
+int			close_setup(t_minirt *minirt);
 
 int	main(int argc, char **argv)
 {
@@ -29,8 +27,9 @@ int	main(int argc, char **argv)
 	if (_init_setup(&minirt, argv[1]))
 		return (1);
 	color_image(&minirt);
-	mlx_hook(minirt.display.window, 17, 0L, _close_setup, &minirt);
-	mlx_hook(minirt.display.window, 2, 1L << 0, _key_hook, &minirt);
+	mlx_hook(minirt.display.window, 17, 0L, close_setup, &minirt);
+	mlx_mouse_hook(minirt.display.window, rt_mouse_hook, &minirt);
+	mlx_key_hook(minirt.display.window, rt_key_hook, &minirt);
 	mlx_loop(minirt.display.mlx);
 	return (0);
 }
@@ -58,7 +57,7 @@ Undefined treatment, exiting.\n", 2);
  *  allocated memory
  * @param minirt minirt struct to close
  */
-static int	_close_setup(t_minirt *minirt)
+int	close_setup(t_minirt *minirt)
 {
 	destroy_display(&minirt->display);
 	clean_minirt(minirt);
@@ -66,14 +65,3 @@ static int	_close_setup(t_minirt *minirt)
 	return (0);
 }
 
-/**
- * KeyPress hook, closes the window on ESC
- * @param keycode X11 keysym of the pressed key
- * @param minirt minirt struct to close on ESC
- */
-static int	_key_hook(int keycode, t_minirt *minirt)
-{
-	if (keycode == XK_Escape)
-		return (_close_setup(minirt));
-	return (0);
-}

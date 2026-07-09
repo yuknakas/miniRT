@@ -6,7 +6,7 @@
 #    By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/01 11:44:22 by yuknakas          #+#    #+#              #
-#    Updated: 2026/07/05 10:13:55 by yuknakas         ###   ########.fr        #
+#    Updated: 2026/07/09 12:20:41 by yuknakas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ RMFLAG	=	rm -rf
 SRC		=	srcs/get_closest.c srcs/main.c srcs/set_pixel.c
 COLORS	=	srcs/Color/get_brigtness.c srcs/Color/get_color.c \
 			srcs/Color/get_normal.c
-DISPLAY	=	srcs/Display/clean_display.c srcs/Display/setup_display.c
+DISPLAY	=	srcs/Display/clean_display.c srcs/Display/setup_display.c \
+			srcs/Display/key_hook.c srcs/Display/key_move.c srcs/Display/mouse_hook.c
 ELEMENT	=	srcs/Elements/cylinder.c srcs/Elements/cylinder_end.c \
 			srcs/Elements/plane.c srcs/Elements/ray_to_pixel.c \
 			srcs/Elements/setup_screen.c srcs/Elements/sphere.c

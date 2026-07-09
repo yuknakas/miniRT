@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 10:49:19 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/04 19:20:46 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 11:04:01 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ bool	parse_colors(char *str, float rgb[3])
 		val = rt_atoi(arr[i]);
 		if (val < 0 || 255 < val)
 		{
-		printf("%i\n", val);
-			write(2, ERR_COLOR, ft_strlen(ERR_COLOR));
+			ft_putstr_fd(ERR_COLOR, 2);
 			return (true);
 		}
 		rgb[i] = (float)val / 255.0F;
@@ -93,12 +92,12 @@ static bool	_is_valid_3p(char **arr)
 {
 	if (arr == NULL)
 	{
-		write(2, ERR_MALLOC, ft_strlen(ERR_MALLOC));
+		ft_putstr_fd(ERR_MALLOC, 2);
 		return (false);
 	}
 	if (arr_len(arr) != 3)
 	{
-		write(2, ERR_3PTR, ft_strlen(ERR_3PTR));
+		ft_putstr_fd(ERR_3PTR, 2);
 		return (false);
 	}
 	return (true);
