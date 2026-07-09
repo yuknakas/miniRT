@@ -98,10 +98,10 @@ typedef enum s_elem_type
 	PLANE,
 	CYL,
 	NO_TYPE
-}   t_elem_type;
+}	t_elem_type;
 
 // ==================== ELEMENT STRUCT =======================================
-typedef struct s_element t_element;
+typedef struct s_element	t_element;
 
 typedef struct s_element
 {

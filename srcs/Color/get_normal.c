@@ -12,11 +12,13 @@
 
 #include "color.h"
 
-void		get_normal(float target[3], t_pixel *pixel, t_element *gelement, t_camera *camera);
-static void	_normal_sphere(float target[3], float poi[3], t_sphere *sphere, t_camera *camera);
+void		get_normal(float target[3], t_pixel *pixel, t_element *gelement,
+				t_camera *camera);
+static void	_normal_sphere(float target[3], float poi[3], t_sphere *sphere,
+				t_camera *camera);
 static void	_normal_plane(float target[3], float ray[3], t_plane *plane);
 static void	_normal_cylinder_side(float t[3], float poi[3], t_cylinder *cyl);
-static void _normal_cylinder_end(float t[3], float ray[3], t_cylinder *cyl);
+static void	_normal_cylinder_end(float t[3], float ray[3], t_cylinder *cyl);
 
 /**
  * Sets the normal vector of a surface into a target pointer of float[3]
@@ -24,9 +26,10 @@ static void _normal_cylinder_end(float t[3], float ray[3], t_cylinder *cyl);
  * @param pixel pixel struct holding relavant information
  * @param gelement general element struct
  */
-void	get_normal(float target[3], t_pixel *pixel, t_element *gelement, t_camera *camera)
+void	get_normal(float target[3], t_pixel *pixel, t_element *gelement,
+			t_camera *camera)
 {
-	t_cylinder *cyl;
+	t_cylinder	*cyl;
 
 	if (gelement->type == SPHERE)
 		_normal_sphere(target, pixel->poi, gelement->element, camera);
@@ -54,7 +57,8 @@ void	get_normal(float target[3], t_pixel *pixel, t_element *gelement, t_camera *
  * normal for a point on the surface of sphere can be calculated as
  *  P - O
  */
-static void	_normal_sphere(float target[3], float poi[3], t_sphere *sphere, t_camera *camera)
+static void	_normal_sphere(float target[3], float poi[3], t_sphere *sphere,
+			t_camera *camera)
 {
 	int		i;
 	float	center_to_cam[3];
@@ -95,7 +99,7 @@ static void	_normal_plane(float target[3], float ray[3], t_plane *plane)
 	{
 		while (i < 3)
 		{
-			target[i] = - plane->normal[i];
+			target[i] = -plane->normal[i];
 			i++;
 		}
 	}
@@ -118,7 +122,8 @@ static void	_normal_plane(float target[3], float ray[3], t_plane *plane)
  * The normal for a point on the side can be found by P - C where C is the center
  *  of the cross-sectional circle of the cylidner
  */
-static void	_normal_cylinder_side(float target[3], float poi[3], t_cylinder *cyl)
+static void	_normal_cylinder_side(float target[3], float poi[3],
+			t_cylinder *cyl)
 {
 	float	poi_height;
 	float	poi_min_base[3];
@@ -150,7 +155,8 @@ static void	_normal_cylinder_side(float target[3], float poi[3], t_cylinder *cyl
  * Same idea as _normal_plane, if the dot product of ray and normal is positive,
  *  then the normal is facing the other direction.
  */
-static void _normal_cylinder_end(float target[3], float ray[3], t_cylinder *cyl)
+static void	_normal_cylinder_end(float target[3], float ray[3],
+		t_cylinder *cyl)
 {
 	int	i;
 
@@ -159,7 +165,7 @@ static void _normal_cylinder_end(float target[3], float ray[3], t_cylinder *cyl)
 	{
 		while (i < 3)
 		{
-			target[i] = - cyl->normal[i];
+			target[i] = -cyl->normal[i];
 			i++;
 		}
 	}

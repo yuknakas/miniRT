@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/24 13:41:07 by nakashibay        #+#    #+#             */
+/*   Created: 2026/06/24 13:41:07 by yuknakas          #+#    #+#             */
 /*   Updated: 2026/07/05 11:20:16 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -51,7 +51,7 @@ bool	set_spc(t_minirt *minirt, char **info)
 static bool	_set_sphere(t_minirt *minirt, char **info)
 {
 	t_sphere	*sphere;
-	
+
 	if (arr_len(info) < 4)
 	{
 		ft_putstr_fd("Error: Insufficient arguments for Sphere\n", 2);
@@ -64,8 +64,8 @@ static bool	_set_sphere(t_minirt *minirt, char **info)
 		return (1);
 	}
 	if (ato3f(info[1], sphere->coords)
-			|| parse_dist(&sphere->diameter, info[2])
-			|| parse_colors(info[3], sphere->rgb))
+		|| parse_dist(&sphere->diameter, info[2])
+		|| parse_colors(info[3], sphere->rgb))
 	{
 		free(sphere);
 		return (1);
@@ -84,7 +84,7 @@ static bool	_set_sphere(t_minirt *minirt, char **info)
 static bool	_set_plane(t_minirt *minirt, char **info)
 {
 	t_plane	*plane;
-	
+
 	if (arr_len(info) < 4)
 	{
 		ft_putstr_fd("Error: Insufficient arguments for Plane\n", 2);
@@ -97,9 +97,9 @@ static bool	_set_plane(t_minirt *minirt, char **info)
 		return (1);
 	}
 	if (ato3f(info[1], plane->coords)
-			|| ato3f(info[2], plane->normal)
-			|| parse_colors(info[3], plane->rgb)
-			|| normalize(plane->normal, plane->normal))
+		|| ato3f(info[2], plane->normal)
+		|| parse_colors(info[3], plane->rgb)
+		|| normalize(plane->normal, plane->normal))
 	{
 		free(plane);
 		ft_putstr_fd(ERR_INV_NBR, 2);
@@ -119,7 +119,7 @@ static bool	_set_plane(t_minirt *minirt, char **info)
 static bool	_set_cylinder(t_minirt *minirt, char **info)
 {
 	t_cylinder	*cyl;
-	
+
 	if (arr_len(info) < 6)
 	{
 		ft_putstr_fd("Error: Insufficient arguments for Cylinder\n", 2);
@@ -132,10 +132,10 @@ static bool	_set_cylinder(t_minirt *minirt, char **info)
 		return (1);
 	}
 	if (ato3f(info[1], cyl->coords) || ato3f(info[2], cyl->normal)
-			|| parse_dist(&cyl->diameter, info[3])
-			|| parse_dist(&cyl->height, info[4])
- 			|| parse_colors(info[5], cyl->rgb)
-			|| normalize(cyl->normal, cyl->normal))
+		|| parse_dist(&cyl->diameter, info[3])
+		|| parse_dist(&cyl->height, info[4])
+		|| parse_colors(info[5], cyl->rgb)
+		|| normalize(cyl->normal, cyl->normal))
 	{
 		free(cyl);
 		ft_putstr_fd(ERR_INV_NBR, 2);

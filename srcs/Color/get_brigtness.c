@@ -98,7 +98,8 @@ static bool	_intercepts(float poi[3], float ray[3], t_element *gelement)
 }
 
 /**
- * Calculates the fraction of light that is diffused and directed towards the camera
+ * Calculates the fraction of light that is diffused and directed
+ *  towards the camera
  * @param minirt minirt struct
  * @param gelement general element struct that holds the information
  *  about the element which the point of intersection lies on
@@ -114,6 +115,6 @@ static float	_get_frac(t_minirt *minirt, t_element *gelement, float ray[3])
 
 	get_normal(surface_normal, &minirt->pixel, gelement, minirt->camera);
 	diffuse_frac = dot(surface_normal, ray)
-			/ (v_len(surface_normal) * v_len(ray));
+		/ (v_len(surface_normal) * v_len(ray));
 	return (diffuse_frac);
 }

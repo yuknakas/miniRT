@@ -30,7 +30,7 @@ void	color_image(t_minirt *minirt)
 		minirt->pixel.x++;
 	}
 	mlx_put_image_to_window(minirt->display.mlx, minirt->display.window,
-			minirt->display.image, 0, 0);
+		minirt->display.image, 0, 0);
 	return ;
 }
 
@@ -46,5 +46,5 @@ static void	set_pixel(t_minirt *minirt)
 	color = get_color(minirt, get_close_elem(minirt));
 	buf = minirt->display.ptr_to_image;
 	buf[(minirt->pixel.x * minirt->display.size_line / sizeof(int))
-			+ minirt->pixel.y] = color;
+		+ minirt->pixel.y] = color;
 }

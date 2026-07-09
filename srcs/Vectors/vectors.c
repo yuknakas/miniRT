@@ -57,7 +57,8 @@ bool	is_perpendicular(float v1[3], float v2[3])
 /**
  * Normalize a vector passed by pointer
  * @param v vector to be normalized
- * @param target pointer (float[3]) to store normalized vector. Can be the same as v
+ * @param target pointer (float[3]) to store normalized vector.
+ *  Can be the same as v
  * @return boolean-true if zero-vector (cannot be normalized), false if success
  */
 bool	normalize(float v[3], float target[3])

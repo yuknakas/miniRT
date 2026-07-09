@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/23 15:06:27 by nakashibay        #+#    #+#             */
+/*   Created: 2026/06/23 15:06:27 by yuknakas          #+#    #+#             */
 /*   Updated: 2026/07/09 17:44:49 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -122,7 +122,7 @@ int	rt_atoi(char *str)
 	while (ft_isdigit(*str))
 	{
 		if ((result > (INT_MAX - (*str - '0')) / 10))
-				return (-1);
+			return (-1);
 		result = result * 10 + (*str - '0');
 		str++;
 	}

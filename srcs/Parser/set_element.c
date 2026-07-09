@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/23 14:37:34 by nakashibay        #+#    #+#             */
+/*   Created: 2026/06/23 14:37:34 by yuknakas          #+#    #+#             */
 /*   Updated: 2026/07/05 11:29:46 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -51,7 +51,6 @@ bool	set_element(t_minirt *minirt, char *line)
  */
 static bool	_set_acl(t_minirt *minirt, char **info)
 {
-
 	if (info[0][0] == 'A')
 		return (_set_amb_light(minirt, info));
 	if (info[0][0] == 'C')
@@ -102,8 +101,8 @@ static bool	_set_amb_light(t_minirt *minirt, char **info)
 		ft_putstr_fd(ERR_MALLOC, 2);
 		return (1);
 	}
-	if (parse_brigtness(&minirt->amb_light->ratio, info[1]) || 
-		parse_colors(info[2], minirt->amb_light->rgb))
+	if (parse_brigtness(&minirt->amb_light->ratio, info[1])
+		|| parse_colors(info[2], minirt->amb_light->rgb))
 	{
 		free(minirt->amb_light);
 		minirt->amb_light = NULL;
@@ -134,9 +133,9 @@ static bool	_set_camera(t_minirt *minirt, char **info)
 		return (1);
 	}
 	if (ato3f(info[1], minirt->camera->coords)
-			|| ato3f(info[2], minirt->camera->orientation)
-			|| normalize(minirt->camera->orientation,
-					minirt->camera->orientation))
+		|| ato3f(info[2], minirt->camera->orientation)
+		|| normalize(minirt->camera->orientation,
+			minirt->camera->orientation))
 	{
 		free(minirt->camera);
 		minirt->camera = NULL;
