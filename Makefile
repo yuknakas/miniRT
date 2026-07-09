@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	minirt
+NAME	=	miniRT
 CCW		=	cc -Wall -Wextra -Werror -O2
 
 LIBS	=	-Llibft -lgnl -lft -Lminilibx-linux -lmlx -lX11 -lXext -lm

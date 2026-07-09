@@ -2,5 +2,5 @@
 *.pdf
 minilibx-linux
 .vscode
-minirt
+miniRT
 *.a
