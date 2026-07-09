@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/01 09:25:04 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/09 11:14:45 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 16:15:09 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	set_pixel(t_minirt *minirt)
 	int	*buf;
 	int	color;
 
-	color = get_color(minirt, get_close_elem(minirt, &minirt->pixel));
+	color = get_color(minirt, get_close_elem(minirt));
 	buf = minirt->display.ptr_to_image;
 	buf[(minirt->pixel.x * minirt->display.size_line / sizeof(int))
 			+ minirt->pixel.y] = color;

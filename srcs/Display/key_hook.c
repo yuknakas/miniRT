@@ -6,14 +6,14 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 11:25:50 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/09 12:25:26 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 16:35:18 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "display.h"
 #include <X11/keysym.h>
 
-int			rt_key_hook(int keycode, t_minirt *minirt);
+int			rt_key_hook(int keycode, void *arg);
 static void	_change_size(int keycode, void *element, t_elem_type type);
 static int	_change_height(int keycode, t_minirt *minirt);
 static int	_select_unq_elem(int keycode, t_minirt *minirt);
@@ -23,8 +23,11 @@ static int	_select_unq_elem(int keycode, t_minirt *minirt);
  * @param keycode X11 keysym of the pressed key
  * @param minirt minirt struct to close on ESC
  */
-int	rt_key_hook(int keycode, t_minirt *minirt)
+int	rt_key_hook(int keycode, void *arg)
 {
+	t_minirt	*minirt;
+
+	minirt = arg;
 	if (keycode == XK_Escape)
 		return (close_setup(minirt));
 	if (keycode == XK_p || keycode == XK_o)
@@ -59,7 +62,7 @@ static void	_change_size(int keycode, void *element, t_elem_type type)
 		if (sphere->diameter < EPSILON)
 			sphere->diameter = EPSILON;
 	}
-	if (type == SPHERE)
+	if (type == CYL)
 	{
 		cyl = element;
 		if (keycode == XK_p)
