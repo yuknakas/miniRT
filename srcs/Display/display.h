@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 14:31:38 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/09 12:23:19 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 14:35:36 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 // =========================== Functions =====================================
 bool		setup_display(t_display *display);
 void		destroy_display(t_display *display);
-t_element	*get_close_elem(t_minirt *minirt, t_pixel *pixel);
+t_element	*get_close_elem(t_minirt *minirt);
 void		color_image(t_minirt *minirt);
 int			close_setup(t_minirt *minirt);
 int			rt_key_hook(int keycode, t_minirt *minirt);

@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 16:00:41 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/09 13:59:01 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 14:29:38 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,14 @@ static bool	_intercepts(float poi[3], float ray[3], t_element *gelement)
 	dist = -1.0F;
 	normalize(ray, unitv);
 	if (gelement->type == SPHERE)
-		dist = ray_sphere(poi, unitv, gelement->element, 100 * EPSILON);
+		dist = ray_sphere(poi, unitv, gelement->element, EPSILON);
 	else if (gelement->type == PLANE)
-		dist = ray_plane(poi, ray, gelement->element, EPSILON);
+		dist = ray_plane(poi, unitv, gelement->element, EPSILON);
 	else if (gelement->type == CYL)
 	{
 		cyl = gelement->element;
 		temp = cyl->hit_type;
-		dist = ray_cylinder(poi, ray, cyl, 100 * EPSILON);
+		dist = ray_cylinder(poi, unitv, cyl, EPSILON);
 		cyl->hit_type = temp;
 	}
 	if (0.0 < dist && dist < v_len(ray))

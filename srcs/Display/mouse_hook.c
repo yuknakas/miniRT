@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 11:06:48 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/09 13:40:14 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 14:35:58 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,18 @@ int	rt_mouse_hook(int mouse_code, int x, int y, t_minirt *minirt)
 static void	_select_elem(int x, int y, t_minirt *minirt)
 {
 	t_element	*close_elem;
-	t_pixel		pixel;
 
-	pixel.x = y;
-	pixel.y = x;
-	close_elem = get_close_elem(minirt, &pixel);
+	minirt->pixel.x = y;
+	minirt->pixel.y = x;
+	close_elem = get_close_elem(minirt);
 	if (!close_elem)
 	{
+		printf("not detected\n");
 		minirt->display.element = NULL;
 		minirt->display.type = NO_TYPE;
 		return ;
 	}
+	printf("detected\n");
 	minirt->display.element = close_elem->element;
 	minirt->display.type = close_elem->type;
 	return ;

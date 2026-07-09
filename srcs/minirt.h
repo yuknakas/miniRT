@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 14:26:06 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/09 11:55:37 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/09 14:35:24 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <X11/keysym.h>
 
 void		color_image(t_minirt *minirt);
-t_element	*get_close_elem(t_minirt *minirt, t_pixel *pixel);
+t_element	*get_close_elem(t_minirt *minirt);
 int			close_setup(t_minirt *minirt);
 
 #endif
