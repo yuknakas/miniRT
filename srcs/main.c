@@ -13,7 +13,8 @@
 #include "minirt.h"
 
 static bool	_init_setup(t_minirt *minirt, char *infile);
-int			close_setup(t_minirt *minirt);
+static int	_expose_hook(t_minirt *minirt);
+int			    close_setup(t_minirt *minirt);
 
 int	main(int argc, char **argv)
 {
@@ -27,6 +28,7 @@ int	main(int argc, char **argv)
 	if (_init_setup(&minirt, argv[1]))
 		return (1);
 	color_image(&minirt);
+	mlx_hook(minirt.display.window, 12, 1L << 15, _expose_hook, &minirt);
 	mlx_hook(minirt.display.window, 17, 0L, close_setup, &minirt);
 	mlx_mouse_hook(minirt.display.window, rt_mouse_hook, &minirt);
 	mlx_key_hook(minirt.display.window, rt_key_hook, &minirt);
@@ -67,3 +69,9 @@ int	close_setup(t_minirt *minirt)
 	return (0);
 }
 
+static int	_expose_hook(t_minirt *minirt)
+{
+	mlx_put_image_to_window(minirt->display.mlx, minirt->display.window,
+		minirt->display.image, 0, 0);
+	return (0);
+}
