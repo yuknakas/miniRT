@@ -75,7 +75,7 @@ bool	parse_dist(float *dist, char *str)
 		return (true);
 	if (*dist < EPSILON)
 	{
-		write(2, ERR_DIST, ft_strlen(ERR_DIST));
+		ft_putstr_fd(ERR_DIST, 2);
 		return (true);
 	}
 	return (false);

@@ -94,19 +94,16 @@ bool	parse_colors(char *str, float rgb[3])
  */
 static bool	_is_valid_3p(char **arr)
 {
-	int	i;
-	
 	if (arr == NULL)
 	{
 		ft_putstr_fd(ERR_MALLOC, 2);
 		return (false);
 	}
-	if (arr_len(arr) != 3 || ft_strlen(arr[0])
-			|| ft_strlen(arr[1]) || ft_strlen(arr[2]))
+	if (arr_len(arr) != 3 || !ft_strlen(arr[0])
+			|| !ft_strlen(arr[1]) || !ft_strlen(arr[2]))
 	{
 		ft_putstr_fd(ERR_3PTR, 2);
 		return (false);
 	}
-	i = 0;
 	return (true);
 }
