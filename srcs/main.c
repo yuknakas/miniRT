@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/01 09:38:04 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/03 15:22:59 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/05 11:33:05 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,15 @@ int	main(int argc, char **argv)
  */
 static bool	_init_setup(t_minirt *minirt, char *infile)
 {
+	if (parse_input(minirt, infile))
+		return (1);
 	if (setup_display(&minirt->display))
 	{
 		ft_putstr_fd("Error\nError with minilibx. \
 Undefined treatment, exiting.\n", 2);
 		exit(1);
 	}
-	return (parse_input(minirt, infile));
+	return (0);
 }
 
 /**

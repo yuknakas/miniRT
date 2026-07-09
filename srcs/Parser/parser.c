@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 14:20:22 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/07/02 10:57:53 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/05 11:34:45 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,11 @@ static bool	_readline_loop(t_minirt *minirt, int fd)
 	{
 		if (set_element(minirt, line))
 		{
-			free(line);
+			while (line)
+			{
+				free(line);
+				line = get_next_line(fd);
+			}
 			return (1);
 		}
 		free(line);

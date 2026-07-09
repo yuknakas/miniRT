@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/04 19:06:15 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/04 19:16:23 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/05 11:50:17 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 bool	set_fov_d(unsigned char *fov, char *str);
 bool	parse_brigtness(float *brightness, char *str);
+bool	parse_dist(float *dist, char *str);
+void	free_char_dp(char **cdp);
+int		arr_len(char **arr);
 
 /**
  * Sets the field of view for the camera struct
@@ -49,7 +52,8 @@ bool	parse_brigtness(float *brightness, char *str)
 {
 	float	val;
 
-	val = ft_atof(str);
+	if (ft_atopf(str, &val))
+		return (true);
 	if (val < 0.0F || 1.0F < val)
 	{
 		write(2, ERR_BRIGHT, ft_strlen(ERR_BRIGHT));
@@ -57,4 +61,58 @@ bool	parse_brigtness(float *brightness, char *str)
 	}
 	*brightness = val;
 	return (false);
+}
+
+/**
+ * Sets distance, with error handeling in case of a <= 0 length
+ * @param dist pointer to float that holds the distance
+ * @param str string to check from
+ * @return boolean-true in case of error, false if all good
+ */
+bool	parse_dist(float *dist, char *str)
+{
+	if (ft_atopf(str, dist))
+		return (true);
+	if (*dist < EPSILON)
+	{
+		write(2, ERR_DIST, ft_strlen(ERR_DIST));
+		return (true);
+	}
+	return (false);
+}
+
+/**
+ * Frees a char double pointer
+ * @param cdp char double pointer to free
+ */
+void	free_char_dp(char **cdp)
+{
+	int	i;
+
+	if (!cdp)
+		return ;
+	i = 0;
+	while (cdp[i])
+	{
+		free(cdp[i]);
+		i++;
+	}
+	free(cdp);
+}
+
+/**
+ * Returns the length of an char ** array
+ * @param arr char ** array to find length of
+ * @return int value of length of array
+ */
+int	arr_len(char **arr)
+{
+	int	len;
+
+	if (!arr)
+		return (0);
+	len = 0;
+	while (arr[len])
+		len++;
+	return (len);
 }
