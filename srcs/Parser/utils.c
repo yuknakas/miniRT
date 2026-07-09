@@ -80,7 +80,7 @@ static bool	_set_pos(int *pos, char *str, size_t *i, float *nbr)
 	}
 	if (!ft_isdigit(str[*i]))
 	{
-		write(2, ERR_NB_HEAD, strlen(ERR_NB_HEAD));
+		ft_putstr_fd(ERR_NB_HEAD, 2);
 		return (true);
 	}
 	return (false);
@@ -106,7 +106,7 @@ int	rt_atoi(char *str)
 		str++;
 	if (!ft_isdigit(*str))
 	{
-		write(2, ERR_NB_HEAD, strlen(ERR_NB_HEAD));
+		ft_putstr_fd(ERR_NB_HEAD, 2);
 		return (-1);
 	}
 	while (ft_isdigit(*str))
@@ -129,7 +129,7 @@ int	rt_atoi(char *str)
  */
 static bool	_err_trail(void)
 {
-	write(2, ERR_NB_TRAIL, strlen(ERR_NB_TRAIL));
+	ft_putstr_fd(ERR_NB_TRAIL, 2);
 	return (true);
 }
 

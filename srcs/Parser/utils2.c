@@ -33,7 +33,7 @@ bool	set_fov_d(unsigned char *fov_d, char *str)
 	val = rt_atoi(str);
 	if (val < 1 || 179 < val)
 	{
-		write(2, ERR_FOV, ft_strlen(ERR_FOV));
+		ft_putstr_fd(ERR_FOV, 2);
 		return (true);
 	}
 	*fov_d = (char)val;
@@ -56,7 +56,7 @@ bool	parse_brigtness(float *brightness, char *str)
 		return (true);
 	if (val < 0.0F || 1.0F < val)
 	{
-		write(2, ERR_BRIGHT, ft_strlen(ERR_BRIGHT));
+		ft_putstr_fd(ERR_BRIGHT, 2);
 		return (true);
 	}
 	*brightness = val;
@@ -75,7 +75,7 @@ bool	parse_dist(float *dist, char *str)
 		return (true);
 	if (*dist < EPSILON)
 	{
-		write(2, ERR_DIST, ft_strlen(ERR_DIST));
+		ft_putstr_fd(ERR_DIST, 2);
 		return (true);
 	}
 	return (false);
