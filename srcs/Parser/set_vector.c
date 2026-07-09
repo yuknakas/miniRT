@@ -76,6 +76,7 @@ bool	parse_colors(char *str, float rgb[3])
 		if (val < 0 || 255 < val)
 		{
 			write(2, ERR_COLOR, ft_strlen(ERR_COLOR));
+			free_char_dp(arr);
 			return (true);
 		}
 		rgb[i] = (float)val / 255.0F;
