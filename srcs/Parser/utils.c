@@ -51,7 +51,7 @@ bool	ft_atopf(char *str, float *nbr)
 	}
 	decimal = 1;
 	while (ft_isdigit(str[++i]))
-		*nbr += (str[i] - '0') / powf(10.0F, (float)decimal);
+		*nbr += (str[i] - '0') / powf(10.0F, (float)decimal++);
 	*nbr *= (float)pos;
 	if (str[i] != '\0' && str[i] != '\n')
 		return (_err_trail());
