@@ -122,5 +122,4 @@ Mouse:
 
 ### AI usage
 
-AI (Claude) was used to translate this README, and to help write a
-few of the edge-case test scenes in `tester/`.
+AI was used to organize and translate this README, to help write a few of the edge‑case test scenes in tester/, and was also used during investigation, error debugging, and validation of edge cases.
