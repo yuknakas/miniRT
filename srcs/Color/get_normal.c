@@ -17,7 +17,8 @@ void		get_normal(float target[3], t_pixel *pixel, t_element *gelement,
 static void	_normal_sphere(float target[3], float poi[3], t_sphere *sphere,
 				t_camera *camera);
 static void	_normal_plane(float target[3], float ray[3], t_plane *plane);
-static void	_normal_cylinder_side(float t[3], float poi[3], t_cylinder *cyl);
+static void	_normal_cylinder_side(float t[3], float ray[3], float poi[3],
+				t_cylinder *cyl);
 static void	_normal_cylinder_end(float t[3], float ray[3], t_cylinder *cyl);
 
 /**
@@ -39,7 +40,7 @@ void	get_normal(float target[3], t_pixel *pixel, t_element *gelement,
 	{
 		cyl = gelement->element;
 		if (cyl->hit_type == SIDE)
-			_normal_cylinder_side(target, pixel->poi, cyl);
+			_normal_cylinder_side(target, pixel->ray, pixel->poi, cyl);
 		if (cyl->hit_type == END)
 			_normal_cylinder_end(target, pixel->ray, cyl);
 	}
@@ -122,28 +123,26 @@ static void	_normal_plane(float target[3], float ray[3], t_plane *plane)
  * The normal for a point on the side can be found by P - C where C is the center
  *  of the cross-sectional circle of the cylidner
  */
-static void	_normal_cylinder_side(float target[3], float poi[3],
+static void	_normal_cylinder_side(float target[3], float ray[3], float poi[3],
 			t_cylinder *cyl)
 {
 	float	poi_height;
 	float	poi_min_base[3];
 	float	poi_center[3];
-	int		i;
 
 	v_subtract(poi, cyl->coords, poi_min_base);
 	poi_height = dot(cyl->normal, poi_min_base) / v_len(cyl->normal);
-	i = 0;
-	while (i < 3)
-	{
-		poi_center[i] = cyl->coords[i] + cyl->normal[i] * poi_height;
-		i++;
-	}
-	i = 0;
-	while (i < 3)
-	{
-		target[i] = poi[i] - poi_center[i];
-		i++;
-	}
+	poi_center[0] = cyl->coords[0] + cyl->normal[0] * poi_height;
+	poi_center[1] = cyl->coords[1] + cyl->normal[1] * poi_height;
+	poi_center[2] = cyl->coords[2] + cyl->normal[2] * poi_height;
+	target[0] = poi[0] - poi_center[0];
+	target[1] = poi[1] - poi_center[1];
+	target[2] = poi[2] - poi_center[2];
+	if (dot(ray, target) <= 0.0F)
+		return ;
+	target[0] *= -1.0F;
+	target[1] *= -1.0F;
+	target[2] *= -1.0F;
 }
 
 /**
