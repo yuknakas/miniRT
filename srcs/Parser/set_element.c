@@ -30,9 +30,9 @@ bool	set_element(t_minirt *minirt, char *line)
 	bool		success;
 
 	info = ft_split(line, ' ');
-	if (info == NULL || info[0] == NULL)
+	if (info == NULL || info[0] == NULL || info[0][0] == '\n')
 	{
-		free(info);
+		free_char_dp(info);
 		return (false);
 	}
 	if (ft_strlen(info[0]) == 1)
