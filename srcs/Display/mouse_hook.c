@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 11:06:48 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/09 16:37:43 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/10 13:14:12 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ static void	_select_elem(int x, int y, t_minirt *minirt)
 	close_elem = get_close_elem(minirt);
 	if (!close_elem)
 	{
-		printf("not detected\n");
+		ft_putstr_fd("Not Detected\n", 2);
 		minirt->display.element = NULL;
 		minirt->display.type = NO_TYPE;
 		return ;
 	}
-	printf("detected\n");
+	ft_putstr_fd("Detected\n", 2);
 	minirt->display.element = close_elem->element;
 	minirt->display.type = close_elem->type;
 	return ;

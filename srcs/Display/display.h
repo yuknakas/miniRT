@@ -6,7 +6,7 @@
 /*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 14:31:38 by yuknakas          #+#    #+#             */
-/*   Updated: 2026/07/09 16:14:44 by yuknakas         ###   ########.fr       */
+/*   Updated: 2026/07/10 13:13:43 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "../Elements/element_struct.h"
 # include "../minirt_struct.h"
 # include "display_struct.h"
+# include "../../libft/libft.h"
 
 # ifndef WIDTH
 #  define WIDTH 1280
