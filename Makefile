@@ -6,7 +6,7 @@
 #    By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/01 11:44:22 by yuknakas          #+#    #+#              #
-#    Updated: 2026/07/09 12:20:41 by yuknakas         ###   ########.fr        #
+#    Updated: 2026/07/10 13:45:52 by yuknakas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,24 +33,26 @@ VECTORS	=	srcs/Vectors/vectors.c srcs/Vectors/vectors2.c
 
 SRCS	=	$(SRC) $(COLORS) $(DISPLAY) $(ELEMENT) $(PARSER) $(VECTORS)
 OBJS	=	$(SRCS:srcs/%.c=objs/%.o)
+DEPS	=	$(SRCS:srcs/%.c=deps/%.d)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(MAKE) libft -C ./libft
 	@$(MAKE) gnl -C ./libft
+	@$(MAKE) -C ./minilibx-linux
 	@$(CCW) $(OBJS) $(CFLAG) $(LIBS) -o $(NAME)
 	@echo "> make minirt executed in current directory"
 
 objs/%.o: srcs/%.c
-	mkdir -p $(dir $@)
-	@$(CCW) -c $< -o $@
+	mkdir -p $(dir $@) $(dir $(@:objs/%.o=deps/%.d))
+	@$(CCW) -MMD -MF $(@:objs/%.o=deps/%.d) -c $< -o $@
 
 bonus: all
 
 clean:
 	@$(MAKE) clean -C ./libft
-	@$(RMFLAG) objs
+	@$(RMFLAG) objs deps
 	@echo "> clean executed in current directory"
 
 fclean: clean
@@ -59,5 +61,7 @@ fclean: clean
 	@echo "> fclean executed in current directory"
 
 re: fclean all
+
+-include $(DEPS)
 
 .PHONY: all bonus re clean fclean
