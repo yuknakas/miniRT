@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakashibay <nakashibay@student.42.fr>      +#+  +:+       +#+        */
+/*   By: yuknakas <yuknakas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/24 15:10:21 by nakashibay        #+#    #+#             */
-/*   Updated: 2026/06/24 15:17:38 by nakashibay       ###   ########.fr       */
+/*   Created: 2026/06/24 15:10:21 by yuknakas          #+#    #+#             */
+/*   Updated: 2026/06/24 15:17:38 by yuknakas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	_clean_element(t_element **elements);
  * Frees memory allocated for pointers in t_minirt
  * @param minirt pointer to t_minirt struct
  */
-void		clean_minirt(t_minirt *minirt)
+void	clean_minirt(t_minirt *minirt)
 {
 	_clean_ptr((void **)&minirt->amb_light);
 	_clean_ptr((void **)&minirt->camera);

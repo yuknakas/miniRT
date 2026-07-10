@@ -14,7 +14,7 @@
 
 static bool	_init_setup(t_minirt *minirt, char *infile);
 static int	_expose_hook(t_minirt *minirt);
-int			    close_setup(t_minirt *minirt);
+int			close_setup(t_minirt *minirt);
 
 int	main(int argc, char **argv)
 {

@@ -49,7 +49,7 @@ int	_rgb_to_color(float rgb[3])
 {
 	int	color;
 	int	i;
-	
+
 	color = 0;
 	i = 0;
 	while (i < 3)

@@ -54,14 +54,15 @@ static void	_find_vectors(t_camera *camera)
 /**
  * Sets v_hori when screen has a vetical component
  * @param camera pointer to camera struct, storing v_hori that will be modified
- * 
- * The horizontal vector of the screen is found by the cross product of orientation
- * and [0,1,0], the vertical vector.
+ *
+ * The horizontal vector of the screen is found by the cross product of
+ * orientation and [0,1,0], the vertical vector.
  * Then, the vector is normalized for utility.
+ * v2 is a temporal vertical unit vector [0,1,0]
  */
 static void	_set_hori(t_camera *camera)
 {
-	float	v2[3]; // temporal vertical unit vector [0,1,0]
+	float	v2[3];
 
 	v2[0] = 0.0F;
 	v2[1] = 1.0F;
@@ -76,8 +77,8 @@ static void	_set_hori(t_camera *camera)
  * 
  * The vertical vector is found by the cross product of v_hori and orientation.
  * Then, normalization is applied to the vector.
- * Finally, the vector is corrected to point to the downward direction to maintain
- * the screen upright.
+ * Finally, the vector is corrected to point to the downward direction
+ * to maintain the screen upright.
  */
 static void	_set_vert(t_camera *camera)
 {
@@ -95,9 +96,9 @@ static void	_set_vert(t_camera *camera)
  * Treats edge case when orientation is vertical
  * @param camera pointer to camera that holds v_hori and v_vert
  * 
- * When the orientation is vertical, there is no vertical component of the screen,
- * the cross between orientation and [0,1,0] does not work, hence must be treated
- * as an edge case.
+ * When the orientation is vertical, there is no vertical component of
+ * the screen, the cross between orientation and [0,1,0] does not work,
+ * hence must be treated as an edge case.
  * If screen is facing up, x+ will be v_hori and z- will be v_vert.
  * If screen is facing down, x- will be v_hori and z+ will be v_vert.
  */

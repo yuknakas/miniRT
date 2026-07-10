@@ -13,7 +13,8 @@
 #include "elements.h"
 
 float	cylinder_end(float origin[3], float ray[3], t_cylinder *cyl, float min);
-// float	_ray_oncircle(float ori[3], float ray[3], t_cylinder *cyl, float min);
+// float	_ray_oncircle(float ori[3], float ray[3], t_cylinder *cyl,
+// 		float min);
 float	_ray_incircle(float ori[3], float ray[3], t_cylinder *cyl, float min);
 bool	_is_incircle(float c_min_o[3], float ray[3], float dist, float diam);
 
@@ -52,7 +53,8 @@ float	cylinder_end(float origin[3], float ray[3], t_cylinder *cyl, float min)
  *  to find intersection with a sphere, as we know that the ray only passes
  *  through the circle region of the sphere.
  */
-// float	_ray_oncircle(float origin[3], float ray[3], t_cylinder *cyl, float min)
+// float	_ray_oncircle(float origin[3], float ray[3], t_cylinder *cyl,
+// 		float min)
 // {
 // 	t_sphere	sphere[2];
 // 	int			idx;

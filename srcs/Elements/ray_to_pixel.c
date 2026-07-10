@@ -49,8 +49,8 @@ static void	_pixel_to_screen(t_camera *camera, int x, int y, float target[3])
 	float	hori_dist;
 	int		idx;
 
-	vert_dist = (float)(x - HEIGHT / 2) * (camera->ratio);
-	hori_dist = (float)(y - WIDTH / 2) * (camera->ratio);
+	vert_dist = (float)(x - HEIGHT / 2) *(camera->ratio);
+	hori_dist = (float)(y - WIDTH / 2) *(camera->ratio);
 	idx = 0;
 	while (idx < 3)
 	{

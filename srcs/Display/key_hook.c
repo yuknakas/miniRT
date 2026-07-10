@@ -40,7 +40,8 @@ int	rt_key_hook(int keycode, void *arg)
 		return (_change_height(keycode, minirt));
 	if (keycode == XK_c || keycode == XK_v)
 		return (_select_unq_elem(keycode, minirt));
-	if (keycode == XK_w || keycode == XK_a || keycode == XK_s || keycode == XK_d)
+	if (keycode == XK_w || keycode == XK_a
+		|| keycode == XK_s || keycode == XK_d)
 		return (key_move(keycode, minirt));
 	return (0);
 }

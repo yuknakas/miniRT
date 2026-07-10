@@ -37,4 +37,3 @@ bool	setup_display(t_display *display)
 	display->type = NO_TYPE;
 	return (false);
 }
-
