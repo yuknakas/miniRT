@@ -30,7 +30,8 @@ t_element	*get_close_elem(t_minirt *minirt)
 	t_pixel		*pixel;
 
 	pixel = &minirt->pixel;
-	pixel->min = ray_to_pixel(minirt->camera, pixel->x, pixel->y, pixel->ray);
+	ray_to_pixel(minirt->camera, pixel->x, pixel->y, pixel->ray);
+	pixel->min = EPSILON;
 	dist_min = -1.0F;
 	close_elem = NULL;
 	gelement = minirt->elements;
